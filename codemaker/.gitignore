@@ -21,13 +21,6 @@ local.properties
 # JDT-specific (Eclipse Java Development Tools)      
 .classpath
 
-# ignore properties file
-db.properties
-db_dev.properties
-
-#test folder
-src/test/
-
 # External tool builders
 .externalToolBuilders/
 
