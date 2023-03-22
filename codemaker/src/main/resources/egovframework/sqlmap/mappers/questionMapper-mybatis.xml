@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.teacher.course.exam.dao.QuestionMapper">
+
+<select id="selectQuestion" parameterType="kr.co.codemaker.teacher.course.exam.vo.ExamVO" resultType="kr.co.codemaker.teacher.course.exam.vo.QuestionVO">
+SELECT
+    que_id,
+    que_cont,
+    que_answer,
+    que_explain,
+    que_score,
+    exam_id
+FROM
+    question
+WHERE
+	exam_id = #{examId}
+ORDER BY
+	SUBSTR(que_id,4)
+</select>
+<insert id="insertQuestion" parameterType="kr.co.codemaker.teacher.course.exam.vo.QuestionVO">
+<selectKey resultType="String" keyProperty="queId" order="BEFORE">
+  		SELECT 'QUE'||LPAD(QUE_SEQ.NEXTVAL,4,'0') FROM dual
+</selectKey>
+INSERT INTO question (
+    que_id,
+    que_cont,
+    que_answer,
+    que_explain,
+    que_score,
+    exam_id
+) VALUES (
+    #{queId},
+    #{queCont},
+    #{queAnswer},
+    #{queExplain},
+    #{queScore},
+    #{examId}
+)
+</insert>
+<update id="updateQuestion" parameterType="kr.co.codemaker.teacher.course.exam.vo.QuestionVO">
+UPDATE question
+      SET
+        que_cont = #{queCont},
+  		que_answer = #{queAnswer},
+    	que_explain = #{queExplain},
+    	que_score = #{queScore}
+WHERE
+   		que_id = #{queId}
+</update>
+<delete id="deleteQuestion" parameterType="kr.co.codemaker.teacher.course.exam.vo.QuestionVO">
+DELETE FROM question
+WHERE
+    que_id = #{queId}
+</delete>
+</mapper>

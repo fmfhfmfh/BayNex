@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+* {
+	font-family: '돋움', dotum, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+a:link, a:visited, a:active {
+	text-decoration:none;
+	color: #0088cc;
+}
+
+a:hover { 
+	text-decoration:none; 
+	color: #005580;
+}
+
+.board-wrapper {
+	text-align: center;
+}
+
+.btn-primary {
+	color: #fff !important;
+}
+
+.board_search { 
+	text-align:center; 
+	margin:10px 0 0 0; 
+}
+
+.board_search .stx { 
+	height: 28px;
+	border:1px solid #9A9A9A; 
+	border-right:1px solid #D8D8D8; 
+	border-bottom:1px solid #D8D8D8; 
+	padding: 0 5px;
+}
+
+a.btn {
+	color: #333333;
+}
+
+form input[type="text"] {
+	height: 28px;
+	padding: 0 5px;
+}
+
+form input[type="password"] {
+	height: 28px;
+	padding: 0px;
+}
+
+.board_page { clear:both; text-align:center; margin:3px 0 0 0; }
+
+.debug {
+	background-color: red !important; 
+}

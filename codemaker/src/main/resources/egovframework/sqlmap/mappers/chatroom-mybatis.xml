@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.user.board.chat.dao.ChatRoomMapper"><select id="selectAllChatRoom" resultType="kr.co.codemaker.user.board.chat.vo.ChatRoomVO">
+SELECT * 
+  FROM CHATROOM 
+</select>
+<select id="selectChatRoom" resultType="kr.co.codemaker.user.board.chat.vo.ChatRoomVO" parameterType="kr.co.codemaker.user.board.chat.vo.ChatRoomVO">
+select a.chatroom_id, a.chatroom_nm, a.sub_id 
+from chatroom a, (select b.* from lesson a , subject b 
+                                    where a.sub_id = b.sub_id 
+                                    and a.les_id = #{lesId}) B 
+               where a.sub_id = b.sub_id
+</select>
+</mapper>

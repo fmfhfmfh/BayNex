@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.user.board.chat.dao.ChatMapper"><select id="selectAllChat" resultType="kr.co.codemaker.user.board.chat.vo.ChatVO" parameterType="kr.co.codemaker.user.board.chat.vo.ChatRoomVO">
+SELECT *
+  FROM (SELECT B.CHAT_ID, B.CHAT_TIME, B.CHAT_CONT, A.USER_NM, A.USER_ID, C.CHATROOM_ID
+          FROM USERS A, CHAT B, CHATROOM C 
+         WHERE A.USER_ID = B.USER_ID AND B.CHATROOM_ID = C.CHATROOM_ID AND C.SUB_ID = #{subId})
+  ORDER BY CHAT_TIME
+</select>
+<insert id="insertChat" parameterType="kr.co.codemaker.user.board.chat.vo.ChatVO">
+INSERT INTO CHAT VALUES ('CHAT'||LPAD(CHAT_SEQ.NEXTVAL,4,'0'), sysdate, #{chatCont}, #{chatroomId}, #{userId})
+</insert>
+
+</mapper>

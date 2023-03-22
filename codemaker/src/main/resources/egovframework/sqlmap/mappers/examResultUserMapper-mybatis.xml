@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.classroom.exam.dao.ExamResultUserMapper">
+
+<select id="selectAllExamResult" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="kr.co.codemaker.user.classroom.exam.vo.ExamResultVO">
+SELECT
+    er.er_answer,
+    er.er_check,
+    er.user_id,
+    q.*,
+    erc.answerCount
+FROM
+    examresult er, question q, 
+    (SELECT COUNT(*) answerCount
+       FROM examresult 
+	  WHERE er_check != 0 
+	    AND exam_id = #{examId}
+	    AND user_id = #{userId}) erc
+WHERE
+	er.exam_id = #{examId}
+AND
+	er.que_id = q.que_id
+AND 
+    er.user_id = #{userId}
+</select>
+<insert id="insertExamResult" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamResultVO">
+INSERT INTO examresult (
+    que_id,
+    er_answer,
+    er_check,
+    user_id,
+    exam_id
+) VALUES (
+    #{queId},
+    #{erAnswer},
+    #{erCheck},
+    #{userId},
+    #{examId}
+)
+</insert>
+<update id="updateExamResult" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamResultVO">
+UPDATE examresult
+       SET 
+       	er_answer = #{erAnswer},
+    	er_check = #{erCheck}
+WHERE
+    que_id =  #{queId}
+</update>
+</mapper>

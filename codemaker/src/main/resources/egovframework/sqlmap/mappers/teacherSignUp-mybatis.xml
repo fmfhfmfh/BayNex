@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.teacher.signup.dao.TeacherSignUpMapper">
+	<insert id="insertTeacher" parameterType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+		INSERT INTO teacher 
+		VALUES(#{tchId},#{tchPass},#{tchNm},#{tchTel},
+				#{tchProfile,jdbcType=VARCHAR},SYSDATE,'',#{tchIntro},
+				#{tchCode},#{tchGn},#{resId},#{comId,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="selectResume" resultType="kr.co.codemaker.teacher.signup.vo.ResumeVO" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+		SELECT * 
+		FROM resume 
+		WHERE res_code=#{resCode} and res_state = 'Y'
+	</select>
+	
+	<select id="tchIdChk" resultType="kr.co.codemaker.teacher.signup.vo.TeacherVO" parameterType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+		SELECT * 
+		FROM teacher 
+		WHERE tch_id = #{tchId}
+	</select>
+</mapper>

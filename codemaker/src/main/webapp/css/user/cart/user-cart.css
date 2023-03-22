@@ -1,0 +1,204 @@
+@charset "UTF-8";
+.cart-box{
+    max-height: 791px;
+    background: white;
+    min-height: 791px;
+}
+.cartBoxArea{
+    width: 65%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+h3{
+	margin-bottom: 15px;
+}
+
+table{
+	width: 100%;
+    border-spacing: 0px;
+    border-top: 2px solid #3c3c3c9e;
+    border-bottom: 1px solid #80808045;
+}
+
+.les-delete{
+    padding: 15px 0 0 46px;
+}
+.les-delete span:hover{
+	cursor: pointer;
+}
+.les-delete span{
+	display: inline-block;
+    width: 105px;
+    background: #0c2c31c4;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 6px;
+}
+#thead{
+}
+#tbody{
+	display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#tbody tr{
+	line-height: 40px;
+	display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+   
+}
+table th{
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+    line-height: 36px;
+    font-size: 16px;
+}
+.lessonTr td{
+	border-top: 1px solid #00000026;
+}
+.chk{
+	text-align: center;
+}
+.tdLine{
+	border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+}
+.tdCenter {
+	text-align: center;
+}
+.txt{
+	font-style: normal;
+}
+.tdinDiv{
+	padding: 15px;
+}
+.won{
+	vertical-align: 0.3px;
+    font-size: 16px;
+}
+.fBold{
+	font-weight: bold;
+}
+#price{
+    display: table;
+    width: 100%;
+    padding: 32px;
+    border-top: 1px solid #00000026;
+    margin-top: 15px;
+    border-bottom: 1px solid #00000026;
+    table-layout: fixed;
+    border-width: 1px;
+    text-align: center;
+}
+#btnDiv{
+	text-align: center;
+    margin: 40px 0 50px;
+}
+.lessonPage{
+    display: inline-block;
+    min-width: 200px;
+    height: 56px;
+    margin-right: 6px;
+    box-sizing: border-box;
+    font-size: 17px;
+    line-height: 55px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    vertical-align: top;
+    padding: 0px 26px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(185,190,194);
+    border-image: initial;
+    border-radius: 3px;
+}
+.lessonPage:hover{
+	text-decoration: none;
+}
+#sub{
+	-webkit-box-flex: 0;
+    width: 200px;
+    flex: 0 0 auto;
+    height: 56px;
+    font-size: 17px;
+    letter-spacing: -0.6px;
+    border-color: #005f86fa;
+    background: #005f86;
+    color: white;
+    font-weight: 700;
+    border: 1px solid;
+    border-radius: 3px;
+}
+.total{
+    font-size: 22px;
+    font-weight: bold;
+}
+#cash{
+	color: #005f86fa;
+    vertical-align: 1px;
+}
+.lesChk{
+	display: none;
+}
+.lesChk + label{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border : 2px solid #bcbcbc;
+	cursor: pointer;
+	background: url('/img/icon/noChk.png');
+}
+.lesChk:checked + label{
+	background: url('/img/icon/onChk.png');
+}
+#allChk{
+	display: none;
+}
+#allChk + label{
+	background: url('/img/icon/noChk.png');
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border : 2px solid #bcbcbc;
+	cursor: pointer;
+}
+#allChk:checked + label{
+	background: url('/img/icon/onChk.png');
+}
+
+/* 빈 장바구니 */
+.empty-cart-box{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 791px;
+}
+.move-btn-box{
+	display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+}
+.move-btn{
+    width: 189px;
+    color: white;
+    height: 57px;
+    font-size: 22px;
+    font-weight: 600;
+}
+.empty-cart-box span{
+	font-size: 41px;
+	font-weight: 600;
+}
+.main-btn{
+	background: rgb(0,94,135);
+}
+.lesson-btn{
+	background: #383838a3;
+}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.teacher.course.exam.dao.ExamMapper">
+
+<select id="selectExam" parameterType="kr.co.codemaker.teacher.course.exam.vo.ExamVO" resultType="kr.co.codemaker.teacher.course.exam.vo.ExamVO">
+SELECT
+    exam_id,
+    exam_nm,
+    exam_state,
+    exam_date,
+    lidx_id
+FROM
+    exam
+WHERE
+	exam_id = #{examId}
+</select>
+
+<insert id="insertExam" parameterType="kr.co.codemaker.teacher.course.exam.vo.ExamVO">
+<selectKey resultType="String" keyProperty="examId" order="BEFORE">
+  		SELECT 'EXAM'||LPAD(EXAM_SEQ.NEXTVAL,4,'0') FROM dual
+</selectKey>
+INSERT INTO exam (
+    exam_id,
+    exam_nm,
+    exam_state,
+    exam_date,
+    lidx_id,
+    les_id
+) VALUES (
+	#{examId},
+	#{examNm},
+	#{examState},
+	SYSDATE,
+	#{lidxId},
+	#{lesId}
+)
+</insert>
+
+<delete id="deleteExam" parameterType="kr.co.codemaker.teacher.course.exam.vo.ExamVO">
+DELETE FROM exam
+WHERE exam_id =#{examId}
+</delete>
+
+<update id="updateExam" parameterType="kr.co.codemaker.teacher.course.exam.vo.ExamVO">
+UPDATE exam
+   SET
+ <if test="examNm != null and !examNm.equals('')">
+		exam_nm = #{examNm},
+ </if>
+   exam_state = #{examState},
+   exam_date = SYSDATE
+WHERE
+   exam_id =#{examId}
+</update>
+
+<select id="selectAllSubject" parameterType="kr.co.codemaker.teacher.course.exam.vo.SubjectVO" resultType="kr.co.codemaker.teacher.course.exam.vo.SubjectVO">
+SELECT
+    sub_id,
+    sub_nm,
+    sub_out
+FROM
+    subject
+   
+</select>
+<select id="selectAllLesson" parameterType="kr.co.codemaker.teacher.course.exam.vo.LessonVO" resultType="kr.co.codemaker.teacher.course.exam.vo.LessonVO">
+SELECT
+    les_id,
+    les_nm,
+    les_cont,
+    les_state,
+    les_cash,
+    les_term,
+    tch_id,
+    sub_id
+FROM
+    lesson
+WHERE
+	tch_id = #{tchId}
+<if test="subId != null and !subId.equals('')">
+AND
+	sub_id = #{subId}
+</if>
+</select>
+<select id="selectAllExam" parameterType="kr.co.codemaker.teacher.course.exam.vo.ExamVO" resultType="kr.co.codemaker.teacher.course.exam.vo.ExamVO">
+SELECT *
+ FROM
+	(SELECT a.*, ROWNUM AS rn
+	  FROM
+		(SELECT
+		   e.exam_id,
+		   e.exam_nm,
+		   e.exam_state,
+		   e.exam_date,
+		   l.les_id,
+		   l.les_cont,
+		   li.lidx_id,
+		   li.lidx_cont,
+		   l.tch_id,
+		   l.les_state
+		FROM
+		    lesson l, lesson_index li, exam e
+		WHERE
+			l.les_id =  li.les_id
+		AND 
+			e.lidx_id(+) = li.lidx_id
+		AND
+			l.tch_id = #{tchId}
+		<if test="searchLesId != null and !searchLesId.equals('')">
+		AND
+			l.les_id = #{searchLesId}
+		</if>
+		<choose>
+			<when test="searchExamState != null and !searchExamState.equals('')">
+				<choose>
+					<when test='searchExamState.equals("0")'>
+						AND e.exam_id is NULL
+						AND l.les_state = '1'
+					</when>
+					<when test='searchExamState.equals("3")'>
+						AND l.les_state = '2'
+					</when>
+					<when test='searchExamState.equals("4")'>
+						AND l.les_state = '3'
+					</when>
+					<when test='searchExamState.equals("5")'>
+						AND l.les_state = '4'
+					</when>
+					<otherwise>
+						AND e.exam_state = #{searchExamState}
+					</otherwise>
+				</choose>
+			</when>
+		</choose>
+		ORDER BY l.les_id, li.lidx_num) a)
+ WHERE rn BETWEEN 10 * (#{page} - 1) + 1 AND #{page} * 10
+</select>
+
+<select id="selectTotalCntExam" parameterType="kr.co.codemaker.teacher.course.exam.vo.ExamVO" resultType="java.lang.Integer">
+SELECT COUNT(*)
+ FROM
+     lesson l, lesson_index li,
+      (SELECT *
+        FROM exam) e
+WHERE
+   	l.les_id =  li.les_id
+AND 
+	e.lidx_id(+) = li.lidx_id
+AND
+	l.tch_id = #{tchId}
+<if test="searchLesId != null and !searchLesId.equals('')">
+	AND
+		l.les_id = #{searchLesId}
+</if>
+<choose>
+	<when test="searchExamState != null and !searchExamState.equals('')">
+		<choose>
+			<when test='searchExamState.equals("0")'>
+				AND e.exam_id is NULL
+				AND l.les_state = '1'
+			</when>
+			<when test='searchExamState.equals("3")'>
+				AND l.les_state = '2'
+			</when>
+			<when test='searchExamState.equals("4")'>
+				AND l.les_state = '3'
+			</when>
+			<when test='searchExamState.equals("5")'>
+				AND l.les_state = '4'
+			</when>
+			<otherwise>
+				AND e.exam_state = #{searchExamState}
+			</otherwise>
+		</choose>
+	</when>
+</choose>
+</select>
+</mapper>

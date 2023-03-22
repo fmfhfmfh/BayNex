@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.article{
+	width: 60%;
+	margin: 25px auto 0;
+	max-height: 798px;
+}
+.textCt{
+	margin-left: 35px;
+	height: 715px;
+}
+.textBt{
+	border-bottom: 1px solid #888B8D;
+	width: 200px;
+	height: 39px;
+	background: #f8f9fc;
+	font-size: 23px;
+}
+.btnCol{
+	background: #005f86;
+	width: 80px;
+	height: 38px;
+	color: #fff;
+	font-weight: 600;
+	font-size: 19px;
+}
+select{
+	height: 40px;
+	width: 115px;
+	font-size: 20px;
+	background: #f8f9fc;
+}
+.fw-600{
+	font-weight: 600;
+}
+.fc{
+	color: #888B8D;
+}
+.ds-flex{
+	display: flex;
+	align-items: center;
+}
+.rightText{
+	float: right;
+}
+.btn{
+	float: right;
+	width: 120px;
+	height: 40px;
+	background: #005f86;
+	color: #fff;
+	font-weight: 600;
+}
+tr{
+	padding: 10px;
+}
+.centerTd{
+	text-align: center;
+}
+.a-title{
+	color: black;
+	font-size: 25px;
+}
+.tr-bo{
+	font-size: 30px;
+	border-bottom: 1px solid #888B8D;
+	border-top: 1px solid #888B8D;
+}
+.th-s{
+	width: 200px;
+	height: 60px;
+	text-align: center;
+}
+.th-t{
+	width: 300px;
+}
+.th-d{
+	width: 200px;
+}
+.newIcon{
+	background: red;
+	color: white;
+}

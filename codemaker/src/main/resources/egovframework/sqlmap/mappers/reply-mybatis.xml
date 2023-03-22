@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.common.dao.ReplyMapper">
+<select id="selectAllReply" resultType="kr.co.codemaker.common.vo.ReplyVO" parameterType="java.util.HashMap">
+select QNA_ID,
+      		 LEVEL REPLYLEVEL,
+     		 REPLY_ID,
+      		 REPLY_ROOT,
+      		 CASE WHEN REPLY_OUT = 'Y' THEN '**삭제된 댓글입니다**'  ELSE REPLY_CONT END REPLY_CONT,
+    	     REPLY_WRITER,
+      		 REPLY_OUT,
+     		 REPLY_DATE
+	FROM(select * from REPLY where QNA_ID = #{qnaId} ORDER BY REPLY_DATE)
+	START WITH  REPLY_ROOT is null
+	CONNECT BY PRIOR REPLY_ID = REPLY_ROOT 
+	ORDER SIBLINGS BY REPLY_DATE
+</select>
+<insert id="insertReply" parameterType="kr.co.codemaker.common.vo.ReplyVO">
+INSERT INTO reply values ('REPLY'||LPAD(REPLY_SEQ.NEXTVAL,4,'0'), sysdate, #{replyCont}, #{replyWriter}, 'N', #{replyRoot}, #{qnaId})
+
+	<selectKey keyProperty="replyId" resultType="String">
+		SELECT 'REPLY'||LPAD(REPLY_SEQ.NEXTVAL,4,'0') FROM DUAL
+	</selectKey>
+</insert>
+<update id="updateReply" parameterType="kr.co.codemaker.common.vo.ReplyVO">
+UPDATE reply set reply_cont = #{replyCont} where reply_id = #{replyId}
+</update>
+<delete id="deleteReply" parameterType="kr.co.codemaker.common.vo.ReplyVO">
+UPDATE reply set reply_out = 'Y' where reply_id = #{replyId}
+</delete>
+
+
+
+
+<select id="selectReply" parameterType="java.lang.String" resultType="kr.co.codemaker.common.vo.ReplyVO">
+SELECT * 
+  FROM reply where reply_id = #{replyId}
+</select>
+</mapper>

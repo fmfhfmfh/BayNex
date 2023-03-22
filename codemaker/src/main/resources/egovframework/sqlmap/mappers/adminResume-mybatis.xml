@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.admin.course.resume.dao.ResumeAdminMapper">
+	<select id="selectAllResume" resultType="kr.co.codemaker.teacher.signup.vo.ResumeVO" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+SELECT
+			res_id
+			, res_code
+			, res_nm
+			, res_tel
+			, res_mail
+			, res_profile
+			, res_motive
+			, res_edu
+			, res_license
+			, res_career
+			, res_state
+		FROM
+			resume
+		WHERE   1 = 1
+		<if test='resState == "2"'>
+			AND res_state = '2'
+		</if>
+		<if test='resState == "Y"'>
+			AND res_state = 'Y'
+		</if>
+		<if test='resState == "N"'>
+			AND res_state = 'N'
+		</if>
+</select>
+
+	<select id="getAllResume" resultType="kr.co.codemaker.teacher.signup.vo.ResumeVO" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+		SELECT
+			res_id
+			, res_code
+			, res_nm
+			, res_tel
+			, res_mail
+			, res_profile
+			, res_motive
+			, res_edu
+			, res_license
+			, res_career
+			, res_state 
+		FROM
+			resume
+		WHERE
+			res_id = #{resId}
+	</select>
+	
+	<update id="updateResume" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+		UPDATE 
+			resume
+		SET
+			res_state = #{resState}
+		WHERE
+			res_id = #{resId}
+	</update>
+</mapper>

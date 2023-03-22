@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+.card{
+	height: auto;
+    min-height: 1080px;
+/*     border: 1px solid; */
+}
+.select-container-area{
+	width: 90%;
+    margin: 4em auto 0;
+    font-family: 'LotteMartDream';
+}
+.lesson-top, .lesson-bottom, .lesson-div, .les-sub-div, .lesIdx-div{
+/* 	border: 1px solid black; */
+	
+}
+.lesson-top{
+	height: 600px;
+}
+.lesson-bottom{
+	height: auto;
+    margin: 0 0 40px 0;
+    background: #f1f1f17a;
+}
+h2{
+	font-family: 'LotteMartDream';
+	color : black;
+	font-size: 2.0em;
+	font-weight: 600;
+	color: black;
+}
+.lesson-div{
+	height: 70%;
+	margin: 40px 0 0 0;
+	border-top: 15px solid green;
+	background: #f1f1f17a;
+}
+.les-md-div{
+	height: 14%;
+}
+.les-div-1{
+	height: 10%;
+	margin: 14px 0 0 0;
+}
+.les-div-2{
+	height: 20%;
+}
+.les-div-3{
+	height: 12%;
+    width: 22%;
+	display: inline-block;
+}
+.les-div-4{
+	width: 100%;
+	height: 30%;
+	display: inline-block;
+}
+
+.les-sub-lb{
+	font-size: 20px;
+    margin: 0 0 0 20px;
+    font-weight: 600;
+    color: black;
+}
+.les-lb{
+	width:25%;
+	font-size: 16px;
+    margin: 0 0 0 20px;
+    font-weight: 600;
+    color: black;
+}
+.les-lb2{
+	width:40%;
+	font-size: 16px;
+    margin: 0 0 0 20px;
+    font-weight: 600;
+    color: black;
+}
+.les-input-1{
+	border-color: #e5e9f2;
+    display: block;
+    width: 60%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #272727;;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 6px 0 0 20px;
+/*     font-weight: 600; */
+}
+.les-input-2{
+	border-color: #e5e9f2;
+    display: block;
+    width: 60%;
+    height: 110px;
+    padding: 6px 12px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #272727;;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 6px 0 0 20px;
+/*     font-weight: 600; */
+}
+
+.les-input-1-shadow{
+	transition: box-shadow .15s ease;
+  	border: 1px solid gray;
+/*     box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02); */
+}
+.les-title-div{
+	width: auto;
+}
+.lesIdx-div{
+	height: 90%;
+	padding: 30px 0 0 0;
+	border-top: 15px solid #49a949;
+}
+.lesIdx-div-1{
+	width: 8%;
+	display: inline-block;
+}
+.lesIdx-div-2{
+	width: 70%;
+    display: inline-block;
+}
+.lesIdx-div-3{
+	width: 34%;
+    display: inline-block;
+    margin: 0 0 0 116px;
+}
+.lesIdx-div-4{
+	width: 13%;
+    display: inline-block;
+    margin: 0 0 0 2px;
+}
+.buttonDiv{
+	margin: 40px 0 0 0;
+}
+#addLesBtn{
+	height: 35px;
+    font-size: 13px;
+    margin:20px 20px 0 0;
+    float: right;
+}
+.idxDelBtn{
+	margin: 35px 0px 0 20px;
+	width: 40px;
+    height: 30px;
+    background: #2f2e2e;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.newIdxDelBtn{
+	margin: 35px 0px 0 20px;
+	width: 40px;
+    height: 30px;
+    background: #2f2e2e;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.hr-1{
+	width: 950px;
+    margin: 20px 0 20px 20px;
+    border: 1px solid #dedede;
+}
+#cancel{
+	height: 35px;
+	font-size: 13px;
+	float: right;
+	
+}
+#push{
+	height: 35px;
+	font-size: 13px;
+	float: right;
+	margin: 0 0 0 6px;
+}	
+#subId{
+	height: 30px;
+}
+.modal-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 30px 0 0 0;
+    height: 164px;
+    text-align: center;
+}
+
+.modal-tr-1{
+/* 	background: #056a9a; */
+    color: white;
+}
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+/*     border-top: 1px solid #e5e5e5; */
+}
+.yesBtn{
+	background: #861d1d;
+    margin: 0 15px 0 0;
+    width: 61px;
+}
+.noBtn{
+	background: #030f3c;
+}
+.h2Modal{
+	font-family: 'LotteMartDream';
+    color: black;
+    font-size: 2.0em;
+    font-weight: 600;
+    color: black;
+    margin: 0 0 38px 0;
+}

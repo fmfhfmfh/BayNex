@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.mypage.dao.MyPayMapper">
+
+<!-- 환불내역조회 -->
+<select id="selectAllMyPay" parameterType="kr.co.codemaker.common.vo.PageVo" resultType="kr.co.codemaker.user.mypage.vo.MyPayVO">
+	SELECT z.* 
+	FROM(
+	select ROWNUM AS rn, c.*, f.*
+	from
+	(SELECT a.pay_id, a.pay_date, a.cos_term, a.pay_way, a.pay_refund, a.pay_sum, b.les_nm, b.les_id
+	FROM pay a, Lesson b
+	WHERE a.les_id = b.les_id AND a.user_id=#{userId}
+	ORDER BY a.pay_date DESC) c,
+	(SELECT sum(e.lidx_curtime)as les_total, d.les_id as les_id2
+	   FROM lesson_index d, index_time e 
+	  where e.user_id=#{userId}and d.lidx_id = e.lidx_id
+	GROUP BY d.les_id) f
+	where c.les_id = f.les_id2)z
+	WHERE rn BETWEEN (#{page} -1) * #{pageSize} + 1 AND #{page} * #{pageSize}
+</select>
+
+<!-- 환불내역조회 목록 총 갯수 -->
+<select id="selectTotalCnt" parameterType="kr.co.codemaker.common.vo.PageVo" resultType="int">
+	SELECT count(*)
+	FROM pay A, Lesson B
+	WHERE a.les_id = b.les_id and a.user_id=#{userId}
+</select>
+
+<!-- 환불 내역 상세 조회 -->
+<select id="selectMyPay" resultType="kr.co.codemaker.user.mypage.vo.MyPayVO" parameterType="kr.co.codemaker.user.mypage.vo.PayVO">
+	select ab.*,cd.*
+	from(
+		(select a.pay_id, a.pay_date, a.pay_way, a.pay_sum, b.les_nm, b.les_id
+		from pay a, lesson b
+		where a.les_id = b.les_id and a.user_id=#{userId} and a.pay_id=#{payId}))ab,
+	  		(SELECT sum(e.lidx_curtime)as les_total, d.les_id as les_id2
+	  	 	FROM lesson_index d, index_time e 
+	  		where e.user_id=#{userId} and d.lidx_id = e.lidx_id
+			GROUP BY d.les_id)cd
+	where ab.les_id = cd.les_id2          
+</select>
+
+<!-- 환불여부변경 -->
+<update id="payRefund" parameterType="java.lang.String">
+	update pay set pay_refund ='Y' 
+	where pay_id=#{payId}
+</update>
+
+<!-- 환불 후 포인트 적립 -->
+<insert id="insertRefund" parameterType="kr.co.codemaker.user.mypage.vo.PointVO">
+	INSERT INTO point(POINT_ID,POINT_DATE,POINT_UPDATE,POINT_GN,POINT_SUM,USER_ID) 
+		VALUES('POINT'||LPAD(POINT_SEQ.nextval,4,'0'), SYSDATE, #{pointUpdate}, '3', 
+							(SELECT point_sum FROM(
+                                SELECT point_sum FROM POINT
+                                WHERE user_id=#{userId}
+                                order by point_date desc) a
+                                WHERE ROWNUM=1) + #{pointUpdate}, #{userId})
+	
+</insert>
+</mapper>

@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.fw-600{
+	font-weight: 600;
+}
+.article{
+	width: 31%;
+	margin: 25px auto 0;
+	max-height: 798px;
+}
+#postImg{
+	width: 40px;
+}
+.reText{
+	height: 55px;
+	width: 500px;
+	resize: none;
+	border: solid 1px gray;
+}
+.reBtn{
+	background: #005f86;
+	color: #fff;
+	width: 89px;
+	height: 55px;
+	font-size: 20px;
+}
+.replyBox{
+	display: flex;
+}
+
+.dateL{
+	float: right;
+}
+.contentD{
+	
+}
+.btn-f{
+	float: right;
+}
+.con-size{
+	height: 400px;
+	border: solid 1px #888B8D;
+}
+.up-btn{
+	background: #fce06d;
+	width: 85px;
+	height: 32px;
+}
+.de-btn{
+	background: #f5704d;
+	color: #fff;
+	width: 85px;
+	height: 32px;
+}
+.back-btn{
+	background: #60c5a8;
+	color: #fff;
+	width: 85px;
+	height: 32px;
+}

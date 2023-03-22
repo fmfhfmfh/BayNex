@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.user.board.community.dao.PostFileMapper">
+	<select id="selectPostFile" parameterType="kr.co.codemaker.user.board.community.vo.PostFileVO" resultType="kr.co.codemaker.user.board.community.vo.PostFileVO">
+		SELECT
+			FILE_NO
+			, FILE_NAME
+			, FILE_PATH
+			, POST_NO
+		FROM
+			POSTFILE
+		WHERE
+			FILE_NO = #{fileNo}
+	</select>
+	<insert id="insertPostFile" parameterType="kr.co.codemaker.user.board.community.vo.PostFileVO">
+		INSERT INTO POSTFILE (
+			FILE_NO
+			, FILE_NAME
+			, FILE_PATH
+			, POST_NO
+		) VALUES (
+			file_lej_seq.NEXTVAL
+			, #{fileName}
+			, #{filePath}
+			, #{postNo}
+		)
+	</insert>
+	<delete id="deletePostFile" parameterType="kr.co.codemaker.user.board.community.vo.PostFileVO">
+		DELETE FROM POSTFILE
+		WHERE
+			FILE_NO = #{fileNo}
+	</delete>
+</mapper>

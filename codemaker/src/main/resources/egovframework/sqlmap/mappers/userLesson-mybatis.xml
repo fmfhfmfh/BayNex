@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.user.lessoninfo.dao.LessonMapper">
+	<select id="selectLesson" resultType="kr.co.codemaker.user.lessoninfo.vo.LessonVO">
+		SELECT * 
+		  FROM lesson
+		  <where>
+		  	AND les_state='3'
+		  </where>
+	</select>
+	
+	<select id="selectDetailLesson" parameterType="kr.co.codemaker.user.lessoninfo.vo.LessonVO" resultType="kr.co.codemaker.user.lessoninfo.vo.LessonVO">
+SELECT a.*, b.*, c.*
+		   FROM lesson a, teacher b, subject c
+		   <where>
+			  AND a.tch_id = b.tch_id
+			  AND a.sub_id = c.sub_id
+			  AND les_id=#{lesId}
+		   </where>
+</select>
+	
+<select id="selectTeacher" parameterType="java.lang.String" resultType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+SELECT a.tch_id,
+a.TCH_PASS,
+a.TCH_NM,
+a.TCH_TEL,
+a.TCH_PROFILE,
+a.TCH_JOIN,
+a.TCH_RETIRE,
+a.TCH_INTRO,
+a.TCH_CODE,
+a.TCH_GN,
+a.RES_ID,
+a.COM_ID
+  FROM teacher a, lesson b where a.tch_Id = b.tch_Id and b.les_Id= #{lesId}
+</select>
+
+	<select id="selectPay" parameterType="kr.co.codemaker.user.lessoninfo.vo.PayVO" resultType="kr.co.codemaker.user.lessoninfo.vo.PayVO">
+	 SELECT *
+	  FROM pay
+	  <where>
+	  	AND user_id = #{userId}
+	  	AND les_id = #{lesId}
+	  	AND DATE_FORMAT(NOW(), '%Y-%m-%d') <![CDATA[<]]> DATE_FORMAT(cos_term, '%Y-%m-%d')
+	  </where>
+</select>
+</mapper>

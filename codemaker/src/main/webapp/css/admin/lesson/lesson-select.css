@@ -1,0 +1,170 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 300;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff') format('woff');
+}
+
+.lesson-detail-box{
+	font-family: 'LotteMartDream';
+	padding: 30px 25px;
+}
+
+.lesson-detail-item{
+	height: 35px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+}
+.lesson-info{
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    line-height: 35px;
+    text-align: center;
+    background: rgb(0,94,135);
+    color: white;
+    font-weight: 600;
+    border-radius: 7px;
+    margin-right: 10px;
+    font-size: 17px;
+}
+h3{
+	font-size: 30px;
+	margin-bottom: 25px;
+}
+.lesson-index-tb{
+	width: 100%;
+	text-align: center;
+	border-top: 3px solid #616060e0;
+	border-bottom: 3px solid #616060e0;
+	table-layout: fixed;
+    word-break: break-all;
+}
+.lesson-index-tb th{
+	font-size: 20px;
+}
+.lesson-index-tb td{
+	border-top: 2px solid #8080809c;
+	font-size: 17px;
+}
+#regBtn{
+    background: rgb(0,94,135);
+}
+#cancle{
+    background: #d00606;
+}
+.run-btn{
+    display: inline-block;
+    width: 80px;
+    margin-left: 15px;
+    height: 33px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+}
+.fw-600{
+	font-weight: 600 !important;
+}
+.run-btn-box{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.lesson-index-div{
+	height: 360px;
+}
+
+.modal{
+	font-family: 'LotteMartDream';
+}
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.modal-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 20px 16px;
+    height: 330px;
+    margin: 15px 0 0 0;
+}
+.modal-table{
+	width: 100%;
+    font-size: 21px;
+    text-align: center;
+}
+.modal-tr-1{
+	background: #056a9a;
+    color: white;
+}
+.h2-a{
+	margin: 0 0 25px 0;
+	font-size: 35px;
+	font-weight: 600;	
+}
+.h3-a{
+	margin: 30px 0 25px 0;
+    font-size: 30px;
+    font-weight: 600;
+}
+.span-st{
+	font-size: 17px;
+    font-weight: 600;
+}
+.th-st {
+    text-align: center;
+}
+.tr-st1{
+	height: 40px;
+}
+.tr-st2{
+	height: 35px;
+}
+.video-img{
+	width: 30px;
+}
+
+.les-md-div{
+	height: 80px;
+}
+.les-div-3{
+	height: 90px;
+    width: 240px;
+    display: inline-block;
+}
+.les-lb{
+	width: 60px;
+    font-size: 16px;
+    margin: 0 0 0 20px;
+    font-weight: 600;
+    color: black;
+}
+.les-input-1{
+    width: 70%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #272727;;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 6px 0 0 20px;
+}
+.btn-st{
+	background: #d4d4d4;
+}
+.h4-st{
+	font-weight: 600;
+	margin: 0 0 0 17px;
+}
+.les-md-div2{
+	padding: 0 0 15px 0;
+}

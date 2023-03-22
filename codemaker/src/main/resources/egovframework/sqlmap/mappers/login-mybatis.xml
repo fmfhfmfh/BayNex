@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.common.dao.LoginMapper">
+	<select id="selectUser" resultType="kr.co.codemaker.common.vo.UserVO" parameterType="kr.co.codemaker.common.vo.UserVO">
+		SELECT * FROM users WHERE user_id =#{userId}
+	</select>
+	
+	<select id="findUserInfo" resultType="kr.co.codemaker.common.vo.UserVO" parameterType="kr.co.codemaker.common.vo.UserVO">
+		SELECT * 
+		FROM users
+		WHERE user_tel = #{userTel}
+		<choose>
+			<when test="userNm != null">
+				AND user_nm=#{userNm}
+			</when>
+			<otherwise>
+				AND user_id=#{userId}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<update id="updateUserPass" parameterType="kr.co.codemaker.common.vo.UserVO">
+		UPDATE users 
+		SET user_pass=#{userPass} 
+		WHERE user_id = #{userId}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="getAdmin" parameterType="java.lang.String" resultType="kr.co.codemaker.admin.vo.AdminVO">
+		SELECT *
+		FROM admin
+		WHERE admin_id = #{adminId}
+	</select>
+	
+	<select id="getTeacher" parameterType="java.lang.String" resultType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+		SELECT *
+		FROM teacher
+		WHERE tch_id = #{tchId}
+	</select>
+
+</mapper>

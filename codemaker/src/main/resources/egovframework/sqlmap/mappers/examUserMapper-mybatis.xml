@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.classroom.exam.dao.ExamUserMapper">
+
+<select id="selectExam" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="kr.co.codemaker.user.classroom.exam.vo.ExamVO">
+SELECT e.*,
+       NVL(es.es_fscore, 0) es_fscore,
+       NVL(es.es_lscore, 0) es_lscore,
+       p.user_id
+  FROM exam e
+   RIGHT OUTER JOIN pay p ON(e.les_id = p.les_id)
+   LEFT OUTER JOIN examscore es ON(e.exam_id = es.exam_id AND es.user_id = #{userId})
+ WHERE p.user_id = #{userId}
+   AND e.exam_id = #{examId}
+</select>
+<select id="selectAllExam" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="kr.co.codemaker.user.classroom.exam.vo.ExamVO">
+SELECT b.*
+FROM (SELECT a.*, ROWNUM AS rn 
+        FROM 
+            (SELECT e.exam_id, 
+            		e.exam_nm, 
+            		e.exam_state, 
+            		e.exam_date, 
+            		p.les_id, 
+                	l.les_nm,
+                	li.lidx_id, 
+                	li.lidx_cont, 
+	                NVL(es.es_fscore, 999) es_fscore, 
+	                NVL(es.es_lscore, 999) es_lscore, 
+	                NVL(es.es_fscore, 999) search_EsScore, 
+	                es.es_edate, 
+	                p.user_id, 
+	                q.queTotal,
+	                NVL(c.avgScore,0) avgScore
+              FROM exam e 
+                   RIGHT OUTER JOIN pay p ON(e.les_id = p.les_id) 
+                   LEFT OUTER JOIN examscore es ON(e.exam_id = es.exam_id AND es.user_id = #{userId}) 
+                   LEFT OUTER JOIN lesson l ON(p.les_id = l.les_id) 
+                   LEFT OUTER JOIN lesson_index li ON(e.lidx_id = li.lidx_id) 
+                   LEFT OUTER JOIN (SELECT SUM(que_score) queTotal, exam_id 
+                                      FROM question GROUP BY exam_id) q ON(e.exam_id = q.exam_id) 
+                   LEFT OUTER JOIN (SELECT ROUND(AVG(es_fscore), 2) avgScore, exam_id
+                                      FROM examscore 
+                                     WHERE user_id = #{userId}
+                                  GROUP BY exam_id) c ON(e.exam_id = c.exam_id)
+             WHERE p.user_id = #{userId}
+               AND p.les_id = #{lesId}
+             <if test='searchEsFscore != null and searchEsFscore.equals("0")'>
+			   AND
+				   es.es_fscore is NULL
+			 </if>
+			 <if test='searchEsFscore != null and searchEsFscore.equals("1")'>
+			   AND
+				   es.es_fscore is NOT NULL
+			 </if>
+          ORDER BY SUBSTR(li.lidx_id, 5)) a) b
+  WHERE rn BETWEEN 10 * (#{page} - 1) + 1 AND #{page} * 10
+</select>
+
+<select id="selectTotalCntExam" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="java.lang.Integer">
+SELECT COUNT(*)
+ FROM
+    pay p
+  LEFT OUTER JOIN
+  exam e ON(p.les_id = e.les_id)
+WHERE
+    p.user_id = #{userId}
+<if test='lesId != null and !lesId.equals("")'>
+	AND
+		e.les_id = #{lesId}
+</if>
+<if test='searchEsFscore != null and searchEsFscore.equals("0")'>
+	AND
+		es.es_fscore is NULL
+</if>
+<if test='searchEsFscore != null and searchEsFscore.equals("1")'>
+	AND
+		es.es_fscore is NOT NULL
+</if>
+</select>
+
+<select id="selectExamLesson" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="kr.co.codemaker.user.classroom.exam.vo.ExamVO">
+SELECT e.*,
+       p.les_id,
+       NVL(es.es_fscore, 999) es_fscore,
+       NVL(es.es_lscore, 999) es_lscore,
+       NVL(es.es_fscore, 999) search_EsScore,
+       es.es_edate,
+       p.user_id
+  FROM exam e
+   RIGHT OUTER JOIN pay p ON(e.les_id = p.les_id)
+   LEFT OUTER JOIN examscore es ON(e.exam_id = es.exam_id AND es.user_id = #{userId})
+   LEFT OUTER JOIN lesson l ON(p.les_id = l.les_id)
+   LEFT OUTER JOIN lesson_index li ON(e.lidx_id = li.lidx_id)
+ WHERE p.les_id = #{lesId}
+<if test='userId != null and !userId.equals("")'>
+   AND p.user_id = #{userId}
+</if>
+</select>
+<select id="selectExamCnt" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="java.lang.Integer">
+SELECT COUNT(*)
+ FROM exam
+WHERE les_id = #{lesId}
+</select>
+</mapper>

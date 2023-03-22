@@ -1,0 +1,333 @@
+.reviewBox{
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.reviewHeader {
+    border-bottom: 1px solid #e7e8ea;
+    line-height: normal;
+    width: 65%;
+}
+.divide {
+    width: 100%;
+    height: 1px;
+    background: #0000001f;
+    margin-bottom: 10px;
+}
+h1 {
+    font-weight: 600;
+    margin-bottom: 1.2em;
+    font-size: 2.1rem;
+}
+.rating-block {
+    margin: 15px 52% 0 19%;
+}
+img#starimg {
+    width: 30px;
+}
+.ReviewTemplate{
+	background-color: #77afc7;
+	border-radius: 2em;
+	height: 220px;
+	padding: 22px 14px 9px 31px;
+	box-shadow: 0 0.5rem 0.8rem 0 rgba(0, 0, 0, 0.15);
+}
+.Review_rating{
+	background-color: white;
+	height: 200px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	margin-top: 36px;
+}
+.ReviewRatingAvg{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ReviewRatingAvg__avg {
+    font-size: 6.3em;
+    text-align: center;
+}
+.review_rating_rowbar1{
+	display: inline-block;
+}
+.review_rating_rowbar2 {
+	width: 22rem;
+    margin-left: 1.6rem;
+    min-height: 1.7rem;
+    display: inherit;
+    flex: 1;
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem;
+    background-color: #f5f1eb;
+    display: inline-block;
+}
+.ReviewRatingRow__bar__inner {
+     border-radius: .2rem; 
+    background-color: #ffd653;
+}
+.rating_bar_header {
+/*     background-color: black; */
+    display: inline-block;
+    width: 95%;
+    padding: 35px;
+}
+.Review_middle{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px 0px 1px 45px;
+}
+p.message_title {
+    color: black;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.message {
+    color: black;
+    font-size: 1.0rem;
+    font-weight: bolder;
+}
+.textbox {
+    display: table-row;
+    box-sizing: border-box;
+    transition: all .3s ease;
+}
+.imgbox{
+	display: table-cell;
+    padding: 21px 30px;
+    vertical-align: middle;
+    width: 210px;
+    background-color: white;
+    color: #323232;
+    text-align: left;
+    font-weight: bold;
+    word-break: break-all;
+    border: 1px solid #e7e8ea;
+    align-items: center;
+    text-align: center;
+
+}
+.textboxbox{
+/* 	background-color:black; */
+    display: flex;
+    padding: 21px 103px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e7e8ea;
+    color: #323232;
+}
+.textbox{
+   display: table;
+    width: 96%
+}
+.textareabox {
+    border : 1px solid #e7e8ea;
+    width: 641px;
+    height: 108px;
+}
+button.reviewBtn {
+    background-color: #cfd1e0;
+    width: 14%;
+    font-weight: bolder;
+}
+.starbox {
+    width: 100%;
+    text-align: center;
+    margin: 48px 21px 35px 0px;
+}
+.starbtn-img{
+ 	height: 40px;
+}
+.reviewbox {
+    width: 100%;
+    background-color: white;
+    height: 160px;
+    margin: 26px 0 15px 0px;
+    border-radius: 1.3rem;
+    display: flex;
+    padding: 24px;
+}
+
+.reviewbox_probox {
+    display: flex;
+    justify-content: center;
+}
+.reviewbox_profile {
+    height: 125px;
+    width: 6.5rem;
+    display: flex;
+    justify-content: center;
+}
+.reviewbox_profile_user{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+img.userimg {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0.5rem 0.8rem 0 rgba(0, 0, 0, 0.15);
+    margin-bottom: 7px;
+}
+.reviewbox_contbox {
+    padding: 13px 27px 5px 43px;
+    width: 90%;
+}
+.reviewbox_review {
+    margin-top: 11px;
+}
+.imgboximg {
+    width: 4.2rem;
+    height: 4.1rem;
+    border-radius: 50%;
+    box-shadow: 0 0.5rem 0.8rem 0 rgba(0, 0, 0, 0.15);
+}
+.Review_header {
+    display: flex;
+}
+img.review_mainimg {
+    width: 337px;
+    float: right;
+    margin: 0px 0px 0px 189px;
+}
+.pointmsg{
+	color : #fdfd00;
+}
+.staravg {
+    width: 171px;
+    text-align: center;
+}
+span.avgpoint {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+
+
+
+.btn {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  display: inline-block;
+  padding: .625rem 1.25rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: .375rem;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+.btn:hover,
+.btn:focus {
+  text-decoration: none;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+}
+
+.btn:disabled {
+  opacity: .65;
+  box-shadow: none;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.btn:not(:disabled):not(.disabled):active {
+  box-shadow: none;
+}
+
+.btn:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08), none;
+}
+
+.btn-info {
+  color: #fff;
+  border-color: #11cdef;
+  background-color: #11cdef;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+}
+
+.btn-info:hover {
+  color: #fff;
+  border-color: #11cdef;
+  background-color: #11cdef;
+}
+
+.btn-info:focus {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08), 0 0 0 0 rgba(17, 205, 239, .5);
+}
+
+.btn-info:disabled {
+  color: #fff;
+  border-color: #11cdef;
+  background-color: #11cdef;
+}
+
+.btn-info:not(:disabled):not(.disabled):active {
+  color: #fff;
+  border-color: #11cdef;
+  background-color: #0da5c0;
+}
+
+.btn-info:not(:disabled):not(.disabled):active:focus {
+  box-shadow: none, 0 0 0 0 rgba(17, 205, 239, .5);
+}
+
+.btn-default {
+  color: #fff;
+  border-color: #172b4d;
+  background-color: #172b4d;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+}
+
+.btn-default:hover {
+  color: #fff;
+  border-color: #172b4d;
+  background-color: #172b4d;
+}
+
+.btn-default:focus {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08), 0 0 0 0 rgba(23, 43, 77, .5);
+}
+
+.btn-default:disabled {
+  color: #fff;
+  border-color: #172b4d;
+  background-color: #172b4d;
+}
+
+.btn-default:not(:disabled):not(.disabled):active {
+  color: #fff;
+  border-color: #172b4d;
+  background-color: #0b1526;
+}
+
+.btn-default:not(:disabled):not(.disabled):active:focus {
+  box-shadow: none, 0 0 0 0 rgba(23, 43, 77, .5);
+}
+
+.btn-sm {
+  font-size: .875rem;
+  line-height: 1.5;
+  padding: .25rem .5rem;
+  border-radius: .375rem;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.classroom.exam.dao.QuestionUserMapper">
+
+<select id="selectQuestion" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="kr.co.codemaker.user.classroom.exam.vo.QuestionVO">
+SELECT
+    que_id,
+    que_cont,
+    que_answer,
+    que_explain,
+    que_score,
+    exam_id
+FROM
+    question
+WHERE
+	exam_id = #{examId}
+ORDER BY
+	SUBSTR(que_id,4)
+</select>
+
+
+
+</mapper>

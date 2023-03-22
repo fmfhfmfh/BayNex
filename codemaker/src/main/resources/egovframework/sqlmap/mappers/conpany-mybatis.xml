@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.admin.company.dao.CompanyMapper">
+
+	<select id="selectAllCompany" parameterType="java.util.HashMap" resultType="kr.co.codemaker.admin.company.vo.CompanyVO" >
+		SELECT *
+		  FROM 
+		  	   (SELECT ROWNUM rn, a.*
+		  	      FROM 
+		  	      	  (SELECT *
+		  	      	     FROM company
+		  	      	     ORDER BY com_id ASC) a)
+		  	      WHERE rn BETWEEN (#{page} -1) * #{pageSize} +1 AND #{page} * #{pageSize}     
+		  	      	
+	</select>
+	
+	<select id="selectCompany" parameterType="kr.co.codemaker.admin.company.vo.CompanyVO" resultType="kr.co.codemaker.admin.company.vo.CompanyVO">
+		SELECT *
+		  FROM company
+		  <where>
+		  	AND com_id=#{comId}
+		  </where>
+	</select>
+	
+	<select id="selectCompanyCnt" resultType="int">
+		SELECT count(*)
+		  FROM company
+	</select>
+	
+	<update id="updateCompany" parameterType="kr.co.codemaker.admin.company.vo.CompanyVO">
+		UPDATE company
+		   SET files_id = 'FILES'||LPAD(FILES_SEQ.CURRVAL,4,'0'), com_state = 'Y'
+		   <where>
+		   		AND com_id = #{comId}
+		   </where>
+		<selectKey keyProperty="filesId" resultType="String">
+			SELECT 'FILES'||LPAD(FILES_SEQ.CURRVAL,4,'0') FROM dual
+		</selectKey>
+	</update>
+	
+</mapper>

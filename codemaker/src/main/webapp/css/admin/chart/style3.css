@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 300;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff') format('woff');
+}
+
+canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+}
+#canvas-holder{
+ 		display: block;
+	 	margin: 0px auto;
+		background: white; 
+ 		height: 60%;
+ 		float: right;
+ 		margin-top: 10%;
+ 		margin-right: 12%;
+}
+.table {
+    width: 105%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+.col-xl-4{
+	width:40%;
+ 	float: left;
+ 	margin-left: 8%;
+}
+.content {
+    margin-top: 3%;
+}
+
+.card-footer {
+	text-align: center;
+	font-weight: bold;
+	color : black;
+}

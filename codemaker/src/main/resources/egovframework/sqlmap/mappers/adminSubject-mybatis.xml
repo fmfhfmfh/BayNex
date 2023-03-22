@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.admin.course.subject.dao.AdminSubjectMapper">
+	<select id="selectAllSubject" resultType="kr.co.codemaker.admin.course.lesson.vo.SubjectVO">
+SELECT *
+		  FROM subject 
+		  ORDER BY sub_id asc
+</select>
+	
+	<insert id="insertSubject" parameterType="kr.co.codemaker.admin.course.lesson.vo.SubjectVO">
+		INSERT INTO subject
+		     VALUES ('SUB'||LPAD(SUB_SEQ.NEXTVAL,4,'0'), #{subNm}, 'N') 
+	</insert>
+	
+	<update id="updateSubject" parameterType="kr.co.codemaker.admin.course.lesson.vo.SubjectVO">
+		UPDATE subject
+		   SET sub_nm=#{subNm}
+		   <where>
+		   		AND sub_id=#{subId}
+		   </where> 
+	</update>
+	
+	<delete id="deleteSubject" parameterType="kr.co.codemaker.admin.course.lesson.vo.SubjectVO">
+		UPDATE subject
+		   SET sub_out='Y'
+		   <where>
+		   		AND sub_id=#{subId}
+		   </where>
+	</delete>
+
+</mapper>

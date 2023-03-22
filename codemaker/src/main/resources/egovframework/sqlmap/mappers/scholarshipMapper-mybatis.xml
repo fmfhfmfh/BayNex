@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.admin.course.scholarship.dao.ScholarshipMapper">
+<select id="selectAllSubject" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.SubjectVO">
+SELECT
+    sub_id,
+    sub_nm,
+    sub_out
+FROM
+    subject
+</select>
+<select id="selectAllScholarshipCnt" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+WITH les AS (
+<![CDATA[SELECT *
+FROM 
+    (SELECT li.les_id, lt.user_id, COUNT(*) cnt
+     FROM lesson_index li, INDEX_TIME lt
+     WHERE li.lidx_id = lt.lidx_id
+     AND li.lidx_durtime <= lt.lidx_curtime
+     GROUP BY li.les_id, lt.user_id )
+WHERE (les_id, cnt) IN (    
+                        SELECT les_id, COUNT(*) cnt
+                        FROM lesson_index
+                        WHERE lidx_durtime IS NOT NULL
+                        GROUP BY les_id )]]>)
+                        
+SELECT l.les_id, l.les_nm, NVL(b.cnt, 0) completeLesCnt, NVL(c.cnt, 0) completeExamCnt, NVL(d.cnt, 0) totalCnt
+FROM lesson l
+LEFT OUTER JOIN
+(SELECT les_id, COUNT(*) cnt
+ FROM les
+ WHERE (user_id, les_id) NOT IN (SELECT user_id, les_id
+                                   FROM scholarship
+                                  WHERE schl_state = '1')
+ GROUP BY les_id) b  ON (l.les_id = b.les_id)
+ 
+LEFT OUTER JOIN
+(SELECT les_id, COUNT(*) cnt
+ FROM 
+    (SELECT e.les_id, es.user_id, COUNT(*) cnt
+     FROM exam e, examscore es
+     WHERE e.exam_id = es.exam_id
+     GROUP BY e.les_id, es.user_id )
+  WHERE (les_id, cnt) IN 
+                        (SELECT les_id, COUNT(*) cnt
+                         FROM exam
+                         GROUP BY les_id)
+  AND user_id IN 
+              (SELECT user_id 
+               FROM les
+              WHERE (user_id, les_id) NOT IN (SELECT user_id, les_id
+                                                FROM scholarship
+                                               WHERE schl_state = '2'))
+GROUP BY les_id) c ON (l.les_id = c.les_id)
+
+LEFT OUTER JOIN
+(SELECT les_id, COUNT(*) cnt
+ FROM pay
+ GROUP BY les_id) d ON (l.les_id = d.les_id)
+<if test="searchSubject != null and !searchSubject.equals('')">
+WHERE 
+	l.sub_id = #{searchSubject}
+</if>
+ORDER BY l.les_id
+</select>
+<select id="selectCurAllLesson" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+SELECT 
+	p.les_id, l.les_nm, u.user_id, u.user_nm, u.user_tel
+ FROM 
+  	pay p, users u, lesson l
+ WHERE 
+ 	p.user_id = u.user_id
+ AND 
+ 	p.les_id = l.les_id
+ AND 
+ 	l.les_id = #{lesId}
+</select>
+<select id="selectLessonScholarship" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+WITH les AS (
+<![CDATA[SELECT *
+FROM 
+    (SELECT li.les_id, lt.user_id, COUNT(*) cnt
+     FROM lesson_index li, INDEX_TIME lt
+     WHERE li.lidx_id = lt.lidx_id
+     AND li.lidx_durtime <= lt.lidx_curtime
+     GROUP BY li.les_id, lt.user_id )
+WHERE (les_id, cnt) IN (    
+                        SELECT les_id, COUNT(*) cnt
+                        FROM lesson_index
+                        WHERE lidx_durtime IS NOT NULL
+                        GROUP BY les_id )]]>)
+
+SELECT l.les_id,l.les_nm, b.user_id, u.user_nm, u.user_tel
+FROM lesson l
+LEFT OUTER JOIN
+(SELECT les_id, user_id
+ FROM les) b  ON (l.les_id = b.les_id)
+INNER JOIN
+ 	users u ON (u.user_id = b.user_id)
+WHERE (u.user_id, l.les_id) NOT IN (SELECT user_id, les_id
+                                      FROM scholarship
+                                     WHERE schl_state = '1')
+</select>
+
+<select id="selectExamScholarship" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+WITH les AS (
+<![CDATA[SELECT *
+FROM 
+    (SELECT li.les_id, lt.user_id, COUNT(*) cnt
+     FROM lesson_index li, INDEX_TIME lt
+     WHERE li.lidx_id = lt.lidx_id
+     AND li.lidx_durtime <= lt.lidx_curtime
+     GROUP BY li.les_id, lt.user_id )
+WHERE (les_id, cnt) IN (    
+                        SELECT les_id, COUNT(*) cnt
+                        FROM lesson_index
+                        WHERE lidx_durtime IS NOT NULL
+                        GROUP BY les_id )]]>)
+                        
+SELECT l.les_id, l.les_nm, u.user_id, u.user_nm, u.user_tel, c.userAvg
+FROM lesson l
+LEFT OUTER JOIN
+(SELECT les_id, userAvg, user_id
+ FROM 
+    (SELECT e.les_id, es.user_id, COUNT(*) cnt, AVG(es.es_fscore) userAvg
+     FROM exam e, examscore es
+     WHERE e.exam_id = es.exam_id
+     GROUP BY e.les_id, es.user_id)
+  WHERE (les_id, cnt) IN 
+                        (SELECT les_id, COUNT(*) cnt
+                         FROM exam
+                         GROUP BY les_id)
+  AND user_id IN (SELECT user_id 
+                    FROM les)) c ON (l.les_id = c.les_id)
+INNER JOIN
+	users u ON (u.user_id = c.user_id)
+WHERE (u.user_id, l.les_id) NOT IN (SELECT user_id, les_id
+                                      FROM scholarship
+                                     WHERE schl_state = '2')
+</select>
+<insert id="insertScholarship" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+INSERT INTO scholarship (
+    schl_id,
+    schl_pay,
+    schl_date,
+    schl_state,
+    les_id,
+    user_id
+) VALUES (
+    'SCHOL'||LPAD(SCHOL_SEQ.NEXTVAL,4,'0'),
+    #{schlPay},
+    SYSDATE,
+    #{schlState},
+    #{lesId},
+    #{userId}
+)
+</insert>
+<insert id="insertPoint" parameterType="kr.co.codemaker.admin.course.scholarship.vo.PointVO">
+<selectKey resultType="Integer" keyProperty="pointSum" order="BEFORE">
+  		SELECT point_sum 
+  		  FROM point 
+  		 WHERE user_id = #{userId}
+  		   AND point_date = (SELECT MAX(point_date)
+  		                               FROM point
+  		                             WHERE user_id = #{userId})
+</selectKey>
+INSERT INTO point (
+    point_id,
+    point_date,
+    point_update,
+    point_gn,
+    point_sum,
+    user_id
+) VALUES (
+    'POINT'||LPAD(POINT_SEQ.NEXTVAL,4,'0'),
+    SYSDATE,
+    #{pointUpdate},
+    '1',
+    #{pointSum}+#{pointUpdate},
+    #{userId}
+)
+</insert>
+
+<select id="selectAllScholarship" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+SELECT l.les_nm, a.*
+FROM lesson l,
+(SELECT les_id, TO_DATE(TO_CHAR(schl_date, 'YYYY-MM-DD'),'YYYY-MM-DD') schl_date, 
+       NVL(COUNT(DECODE(schl_state, 1, 1)), 0) completeLesPay,
+       NVL(COUNT(DECODE(schl_state, 2, 1)), 0) completeExamPay,
+       SUM(schl_pay) totalPay
+FROM scholarship
+GROUP BY les_id, TO_DATE(TO_CHAR(schl_date, 'YYYY-MM-DD'),'YYYY-MM-DD')) a
+WHERE l.les_id = a.les_id
+<if test="searchASubject != null and !searchASubject.equals('')">
+AND
+	l.sub_id = #{searchASubject}
+</if>
+</select>
+
+<select id="selectExamPayScholarship" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+SELECT
+    s.schl_id,
+    s.schl_pay,
+    s.schl_date,
+    s.schl_state,
+    s.les_id,
+    s.user_id,
+    u.user_nm,
+    u.user_tel,
+    l.les_nm
+FROM
+    scholarship s, users u, lesson l
+WHERE 
+    s.user_id = u.user_id
+AND
+    s.les_id = l.les_id
+AND
+    s.les_id = #{lesId}
+AND
+    s.schl_state = '2'
+</select>
+<select id="selectLessonPayScholarship" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+SELECT
+    s.schl_id,
+    s.schl_pay,
+    s.schl_date,
+    s.schl_state,
+    s.les_id,
+    s.user_id,
+    u.user_nm,
+    u.user_tel,
+    l.les_nm
+FROM
+    scholarship s, users u, lesson l
+WHERE 
+    s.user_id = u.user_id
+AND
+    s.les_id = l.les_id
+AND
+    s.les_id = #{lesId}
+AND
+    s.schl_state = '1'
+</select>
+<select id="selectTotalPayScholarship" parameterType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO" resultType="kr.co.codemaker.admin.course.scholarship.vo.ScholarshipVO">
+SELECT
+    s.schl_id,
+    s.schl_pay,
+    s.schl_date,
+    s.schl_state,
+    s.les_id,
+    s.user_id,
+    u.user_nm,
+    u.user_tel,
+    l.les_nm
+FROM
+    scholarship s, users u, lesson l
+WHERE 
+    s.user_id = u.user_id
+AND
+    s.les_id = l.les_id
+AND
+    s.les_id = #{lesId}
+</select>
+</mapper>

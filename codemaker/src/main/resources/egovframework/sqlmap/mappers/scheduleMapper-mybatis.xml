@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.codemaker.admin.course.schedule.dao.ScheduleMapper">
+
+<select id="selectAllSchedule" parameterType="kr.co.codemaker.admin.course.schedule.vo.ScheduleVO" resultType="kr.co.codemaker.admin.course.schedule.vo.ScheduleVO">
+SELECT
+    sch_id,
+    TO_CHAR(sch_sdate,'YYYY-MM-DD')||'T'||TO_CHAR(sch_sdate,'HH24:mi:SS') sch_sfdate,
+    sch_allday,
+    sch_cont,
+    admin_id,
+    TO_CHAR(sch_edate,'YYYY-MM-DD')||'T'||TO_CHAR(sch_edate,'HH24:mi:SS') sch_efdate
+FROM
+    schedule
+</select>
+
+<insert id="insertSchedule" parameterType="kr.co.codemaker.admin.course.schedule.vo.ScheduleVO">
+INSERT INTO schedule (
+	sch_id,
+    sch_sdate,
+    sch_allday,
+    sch_cont,
+    admin_id,
+    sch_edate
+) VALUES (
+    'SCH'||LPAD(SCH_SEQ.NEXTVAL,4,'0'),
+    #{schSdate},
+    #{schAllday},
+    #{schCont},
+    #{adminId},
+    #{schEdate}
+)
+</insert>
+<update id="updateSchedule" parameterType="kr.co.codemaker.admin.course.schedule.vo.ScheduleVO">
+UPDATE schedule
+    SET
+    sch_sdate = #{schSdate},
+   	sch_allday = #{schAllday},
+   	sch_cont = #{schCont},
+   	admin_id = #{adminId},
+   	sch_edate = #{schEdate}
+WHERE
+    sch_id = #{schId}
+</update>
+<delete id="deleteSchedule" parameterType="kr.co.codemaker.admin.course.schedule.vo.ScheduleVO">
+DELETE FROM schedule
+WHERE
+    sch_id = #{schId}
+</delete>
+</mapper>

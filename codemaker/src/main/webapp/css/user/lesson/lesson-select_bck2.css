@@ -1,0 +1,334 @@
+@charset "UTF-8";
+
+.lesson-container{
+	width: 65%;
+    margin: 0 auto;
+    min-height: 861px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.lesson-header-left, .lesson-header-right{
+/* 	border: 1px solid black; */
+	
+}
+.lesson-content-left, .lesson-content-right, .lesson-content-bottom{
+/* 	border: 1px solid black; */
+	
+}
+.lesson-header{
+	display: flex;	
+	height: 250px;
+	}
+.lesson-header-left{
+	width: 55%;
+	padding: 40px 0 0 0;
+}
+.lesson-header-right{
+	width: 45%;
+}
+.les-info-name{
+	font-size: 45px;
+}
+.les-info-cont{
+	margin: 10px 0 0 0;
+	
+}
+.sub-info-id{
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    margin: 0px 0 5px 0px;
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    background: #750075;
+}
+
+.lessonIndex{
+	width: 5.0rem;
+    flex-shrink: 0;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -0.39px;
+    color : white;
+}
+
+.fs-wf {
+	font-size: 17px;
+    color : white;
+}
+.sub-id{
+	line-height: 30px;
+}
+span{
+	font-weight: 600;
+}
+.sub-cont{
+	font-size: 25px;
+}
+.lesbtn{
+	width: 98px;
+  	height: 35px;
+    text-align: center;
+    margin: 0px 0 13px 25px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    background: #750075;
+}
+.les-btn-div{
+	margin: 90px 0 0 70px;
+}
+.fa-wf {
+	font-size: 17px;
+    color : white;
+    font-weight: 600;
+    line-height: 35px;
+}
+
+.lesson-content-top{
+	display: flex;	
+	height: 400px;
+	margin: 35px 0 0 0;	
+}
+.lesson-content-left{
+	width: 55%;
+	height : auto;
+	display: inline-block;
+	
+}
+.lesson-content-right{
+	width: 34%;
+	height : auto;
+	display: inline-block;
+	margin-left: 50px;
+}
+.lesson-content-section-out{
+	margin: 0 0 20px 0;
+    width: 55%;
+}
+.lesson-content-section-in{
+	display: block;
+	position: relative;
+	height: 3.5rem
+}
+.lesson-index{
+	position: absolute;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.0rem;
+    background-color: #dde0ea;
+    border-radius: .8rem;
+}
+.bg-index{
+	background-image: linear-gradient(154deg, #800080ab, #800080ab) !important;
+}
+.lesson-index-num{
+	width: 5.0rem;
+    flex-shrink: 0;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -0.39px;
+    color : white;
+}
+.lesson_content_section{
+	color: #333236;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    padding-left: 2.0rem;
+    padding-right: 2rem;
+    background-color: #ffffff;
+    border-radius: .8rem;
+    font-weight: 600;
+}
+.lidx-cont-h2{
+	display: block;
+    font-size: 1.1em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: 600;
+    color: #333236;
+}
+.lesson-index-cont{
+	width: 60%;
+}
+.lidx-img{
+	width: 40%;
+    display: flex;
+}
+.video-img{
+	width: 1.9rem;
+    height: 1.9rem;
+    background-size: cover;
+}
+.note-img{
+	width: 1.9rem;
+    height: 1.9rem;
+    background-size: cover;
+    margin-left: 20px;
+}
+.teacher-top{
+	position: relative;
+	width: 150px;
+	margin: 0 auto;
+	border-radius: 50%;
+	background-color: white;
+}
+#teacher-img{
+	border-radius: 50%;
+	width: 150px;
+}
+.teacher-bottom{
+	padding: 45px;
+    border-radius: .5rem;
+    box-shadow: 10px 9px 27px 0 rgba(27, 16, 93, 0.06);
+    background-color: #ffffff;
+    height: 240px;
+    width: 80%;
+    margin: 0 auto;
+}
+.teacher-name{
+	display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-bottom: 1.1rem;
+    height: 20%;
+    width: 100%
+}
+.teahcer-name-h3{
+	font-size: 1.4rem; 
+    font-weight: 600; 
+    letter-spacing: -0.32px; 
+    color: #736f79; 
+}
+.teacher-cont{
+	display: inline-block;
+    vertical-align: middle;
+    
+}
+.teacher-cont-p{
+	font-size: 1.5rem;
+    line-height: 1.73;
+    letter-spacing: -0.35px;
+    color: #050505;
+}
+.lesson-content{
+	border:2px solid #656565;
+	width: 90%;
+    height: 280px;
+    display: inline-block;
+    margin: 0 0 0 0;
+}
+.lesson-content-detail-top, .lesson-content-detail-middle,.lesson-content-detail-middle2nd, .lesson-content-detail-bottom,
+.detail-middle-term, .detail-middle-video, .detail-middle-exam{
+/* 	border: 1px solid black; */
+}
+.lesson-content-detail-top{
+	height: 23%;
+	padding: 8px 0 0 200px;
+	border-bottom: 2px solid #656565;
+}
+.lesson-content-bottom{
+	height: auto;
+}
+.lesson-content-detail-middle{
+	height: 23%;
+	display: flex;
+    width: 100%;
+    border-bottom: 2px solid #656565
+}
+.lesson-content-detail-middle2nd{
+	height: 28%;
+	display: flex;
+    width: 100%;
+    border-bottom: 2px solid #656565
+}
+.lesson-content-detail-bottom{
+	height: 26%;
+	display: flex;
+}
+.fa-black:hover{
+    color: white;
+    background: #750075;
+}
+.prices{
+	font-size:35px;
+	font-weight: 600;
+	vertical-align: middle;
+	color: #1055f1;
+}
+.wons{
+	font-size:20px;
+	font-weight: 600;
+	vertical-align: middle;
+	margin: 0 0 0 3px;
+}
+.detail-middle-term, .detail-middle-video,.detail-middle-exam{
+	width: 33.4%;
+    height: 100%;
+    text-align: center;
+  	padding: 19px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.detail-middle2nd-term, .detail-middle2nd-video,.detail-middle2nd-exam{
+	width: 33.4%;
+    height: 100%;
+    text-align: center;
+    padding: 14px;
+    font-size: 30px;
+    font-weight: 600;
+}
+.fa-black{
+	font-size: 21px;
+    color: black;
+    font-weight: 600;
+    line-height: 35px;
+    width: 100%;
+    padding: 15px 0 0 220px;
+}
+.lesson-content-button{
+	margin: 8px 0 0 508px;
+}
+
+.cartbtn{
+	width: 75px;
+	height: 35px;
+	text-align: center;
+	margin: 0px 0 13px 25px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	background: #750075;
+}
+.lesson-content-bottom-in{
+    margin: 40px 0 40px 64px;
+}
+.lidx-img-1st{
+	width: 40px;
+}
+.lidx-img-2nd{
+	margin: 3px 0 0 0px;
+    width: 87px;
+}
+.qna-content{
+	border: 1px solid black;
+	height: 300px;
+}
+.video-end{
+	color: #1055f1;
+}

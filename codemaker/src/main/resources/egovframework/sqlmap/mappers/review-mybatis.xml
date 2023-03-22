@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.lessoninfo.dao.ReviewMapper">
+
+<!-- 수강후기 조회 -->
+<select id="selectReview" parameterType="java.lang.String" resultType="kr.co.codemaker.user.lessoninfo.vo.ReviewVO">
+	SELECT A.REVIEW_CONT, A.REVIEW_DATE, A.REVIEW_STAR, A.REVIEW_ID,
+	        B.USER_ID, B.LES_ID, C.USER_NM, c.USER_PROFILE
+	FROM REVIEW A, PAY B, USERS C
+	WHERE a.pay_id=b.pay_id and b.lES_ID=#{lesId} and b.user_id=c.user_id
+	order by review_date desc
+</select>
+
+<!-- 수강후기 작성 -->
+<insert id="insertReview" parameterType="kr.co.codemaker.user.lessoninfo.vo.ReviewVO">
+	INSERT INTO review(REVIEW_ID,REVIEW_CONT,REVIEW_STAR,REVIEW_DATE,PAY_ID)
+	VALUES('REVIEW'||LPAD(REVIEW_SEQ.nextval,4,'0'), #{reviewCont}, #{reviewStar}, SYSDATE,
+			(SELECT PAY_ID FROM pay WHERE user_id=#{userId} and les_id=#{lesId}))
+</insert>
+
+<!-- 수강후기 삭제 -->
+<delete id="deleteReview" parameterType="java.lang.String">
+	delete from review
+	where review_id =#{reviewId}
+</delete>
+
+<!-- 수강후기 별점 평균 조회 -->
+<select id="selectReviewAvg" parameterType="java.lang.String" resultType="java.lang.Float">
+	SELECT round(avg(review_star),1) from review A, pay B
+	where a.pay_id=b.pay_id and b.lES_ID=#{lesId}
+</select>
+
+<!-- 수강후기 별점 갯수 조회 -->
+<select id="selectReviewStar" parameterType="java.lang.String" resultType="kr.co.codemaker.user.lessoninfo.vo.ReviewStarVO">
+	SELECT COUNT(CASE WHEN review_star=5 THEN 1 END) AS five,
+	       COUNT(CASE WHEN review_star=4 THEN 1 END) AS four,
+	       COUNT(CASE WHEN review_star=3 THEN 1 END) AS three,
+	       COUNT(CASE WHEN review_star=2 THEN 1 END) AS two,
+	       COUNT(CASE WHEN review_star=1 THEN 1 END) AS one     
+	       FROM review A, pay B
+	where a.pay_id=b.pay_id and b.lES_ID=#{lesId}
+</select>
+
+<!-- 수강후기 작성시 결제내역이 있는지 조회 -->
+<select id="checkPayId" parameterType="kr.co.codemaker.user.lessoninfo.vo.PayVO" resultType="java.lang.String">
+SELECT PAY_ID FROM pay WHERE user_id=#{userId} and les_id=#{lesId}
+</select>
+
+<select id="checkWrite" parameterType="kr.co.codemaker.user.lessoninfo.vo.PayVO" resultType="java.lang.String">
+	select user_id
+	from review a, pay b
+	where a.pay_id=b.pay_id and b.lES_ID=#{lesId} and user_id=#{userId}
+</select>
+
+</mapper>

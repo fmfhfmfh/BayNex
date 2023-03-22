@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.mypage.dao.MyPageMapper">
+
+<!-- 회원정보조회 -->
+<select id="myinfoSelect" parameterType="java.lang.String" resultType="kr.co.codemaker.common.vo.UserVO">
+	SELECT * FROM users where user_id = #{userId}
+</select>
+  
+<!--   회원탈퇴 -->
+<update id="deleteUser" parameterType="kr.co.codemaker.common.vo.UserVO">
+	UPDATE users SET user_out = 'Y' WHERE user_id = #{userId} and user_pass = #{userPass}
+</update>
+  
+<!--   회원정보 수정 -->
+<update id="updateUser" parameterType="kr.co.codemaker.common.vo.UserVO">
+	UPDATE users SET user_pass = #{userPass},
+						 user_nm = #{userNm},
+						 user_tel = #{userTel},
+						 user_profile= #{userProfile}
+					WHERE user_id=#{userId}
+</update>
+  
+<!--   회원 포인트 조회 -->
+<select id="selectPoint" parameterType="kr.co.codemaker.common.vo.PageVo" resultType="kr.co.codemaker.user.mypage.vo.PointVO">
+	SELECT *
+	FROM
+	(SELECT ROWNUM AS rn, a.*
+	FROM(
+	    SELECT * 
+	    FROM point
+	    WHERE user_id=#{userId}
+	    ORDER BY point_date DESC)a)
+WHERE rn BETWEEN (#{page} -1) * #{pageSize} + 1 AND #{page} * #{pageSize}
+
+ </select>
+  
+<!--   포인트 조회시 목록 총 갯수 조회 -->
+<select id="selectTotalCnt" resultType="Integer" parameterType="kr.co.codemaker.common.vo.PageVo">
+	SELECT COUNT(*)
+	FROM point
+	WHERE user_id=#{userId}
+</select>
+  
+<!--   포인트적립 -->
+<insert id="insertPoint" parameterType="kr.co.codemaker.user.mypage.vo.PointVO">
+	INSERT INTO point(POINT_ID,POINT_DATE,POINT_UPDATE,POINT_GN,POINT_SUM,USER_ID) 
+		VALUES('POINT'||LPAD(POINT_SEQ.nextval,4,'0'), SYSDATE, #{pointUpdate}, '1', 
+							(SELECT point_sum FROM(
+                                SELECT point_sum FROM POINT
+                                WHERE user_id=#{userId}
+                                order by point_date desc) a
+                                WHERE ROWNUM=1) + #{pointUpdate}, #{userId})
+</insert>
+
+<!-- 포인트환불 -->
+<select id="deletePointCompare" parameterType="java.lang.String" resultType="int" >
+	SELECT point_sum
+	FROM(
+	    SELECT point_sum FROM POINT
+	    WHERE user_id=#{userId}
+	    order by point_date desc) a
+	WHERE ROWNUM=1
+</select>
+
+<!-- 포인트환불 -->
+<insert id="deletePoint" parameterType="kr.co.codemaker.user.mypage.vo.PointVO">
+		INSERT INTO point(POINT_ID,POINT_DATE,POINT_UPDATE,POINT_GN,POINT_SUM,USER_ID) 
+		VALUES('POINT'||LPAD(POINT_SEQ.nextval,4,'0'), SYSDATE, #{pointUpdate}, '2', 
+							(SELECT point_sum FROM(
+                                SELECT point_sum FROM POINT
+                                WHERE user_id=#{userId}
+                                order by point_date desc) a
+                                WHERE ROWNUM=1) - #{pointUpdate}, #{userId})
+</insert>
+
+</mapper>

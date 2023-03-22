@@ -1,0 +1,35 @@
+@charset "UTF-8";
+.card{
+	width: 92%;
+	margin: 0 auto;
+	height: 808px;
+    overflow: auto;
+}
+h3{
+    font-size: 28px;
+    margin-bottom: 0px;
+}
+table{
+	text-align: center;
+}
+.thead-light tr th{
+	font-size: 20px;
+}
+#pointList tr td span{
+	font-size: 16px;
+    color: #000000d1;
+   	font-weight: 600;
+}
+.delBtn{
+    background: #ff0000d4;
+    color: white;
+    font-weight: 600;
+    font-size: 19px;
+    border: none;
+    border-radius: 4px;
+    width: 60px;
+    height: 28px;
+}
+.notify-tr{
+	cursor: pointer;
+}

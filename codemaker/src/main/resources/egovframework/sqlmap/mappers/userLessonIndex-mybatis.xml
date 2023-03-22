@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.user.lessoninfo.dao.LessonIndexMapper">
+
+	<select id="selectLessonIndex" parameterType="kr.co.codemaker.user.lessoninfo.vo.LessonIndexVO" resultType="kr.co.codemaker.user.lessoninfo.vo.LessonIndexVO">
+         SELECT c.lidx_curtime ,a.*, b.user_id 
+ 		   FROM lesson_index a 
+           LEFT OUTER JOIN pay b on a.les_id = b.les_id AND b.user_id = #{userId}
+           LEFT OUTER JOIN index_time c on a.lidx_id = c.lidx_id and b.user_id = c.user_id
+           WHERE a.les_id = #{lesId}
+           ORDER BY lidx_num ASC
+	</select>
+	
+	<update id="updateLessonIndex" parameterType="kr.co.codemaker.user.lessoninfo.vo.LessonIndexVO">
+		UPDATE lesson_index
+   		SET LIDX_CURTIME = #{lidxCurtime}
+   		<where>
+	   		AND LIDX_ID=#{lidxId}
+   		</where>
+	</update>
+	
+	        <select id="selectIndexTime"  resultType="kr.co.codemaker.user.lessoninfo.vo.IndexTimeVO">
+        SELECT
+               user_id,
+               lidx_id,
+            lidx_curtime
+         FROM
+            index_time
+    </select>
+    
+    <select id="selectCurTime" parameterType="kr.co.codemaker.user.lessoninfo.vo.IndexTimeVO" resultType="kr.co.codemaker.user.lessoninfo.vo.IndexTimeVO">
+        SELECT lidx_curtime
+          FROM index_time
+          <where>
+              AND user_id=#{userId}
+              AND lidx_id=#{lidxId}
+          </where>
+    </select>
+    
+    <insert id="insertIndexTime" parameterType="kr.co.codemaker.user.lessoninfo.vo.IndexTimeVO">
+        INSERT INTO index_time
+             VALUES (#{userId},#{lidxId},0)
+    </insert>
+    
+    <update id="updateIndexTime" parameterType="kr.co.codemaker.user.lessoninfo.vo.IndexTimeVO">
+        UPDATE index_time
+           SET lidx_curtime = #{lidxCurtime}
+         <where>
+             AND lidx_id = #{lidxId}
+             AND user_id = #{userId}
+         </where>  
+    </update>
+
+    <select id="selectLidxId" parameterType="kr.co.codemaker.user.lessoninfo.vo.IndexTimeVO" resultType="kr.co.codemaker.user.lessoninfo.vo.IndexTimeVO" >
+    select c.lidx_id ,b.user_id
+      from lesson a, pay b, lesson_index c
+     where b.user_id = #{userId} 
+       and c.les_id = #{lesId}
+       and a.les_id = b.les_id 
+       and a.les_id=c.les_id
+    </select>
+    
+</mapper>
+    
+	

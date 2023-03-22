@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 300;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff') format('woff');
+}
+.card{
+	height: auto;
+    min-height: 1080px;
+}
+.select-container-area{
+	width: 65%;
+    margin: 4em auto 0;
+    font-family: 'LotteMartDream';
+}
+.select-container{
+	margin-top: 5px;
+}
+table{
+	margin: 0 auto;
+    width: 100%;
+    font-size: 1.3em;
+}
+thead, tbody{
+	text-align: center;
+	color: #000000c2;
+}
+.divide{
+	height: 6px;
+    background: #6b6b6b47;
+}
+thead tr,tbody td{
+    border-bottom: 1px solid #6b6b6b47;
+}
+h3{
+   	font-size: 2.2em;
+    margin-bottom: 15px;
+}
+.header-container{
+   	display: flex;
+    justify-content: space-between;
+}
+.header-item2{
+    width: 30%;
+    display: flex;
+    margin-bottom: 15px;
+}
+.header-item2 div{
+	flex-grow: 3;
+	font-size : 1.2em;
+    margin-left: 5px;
+}
+.header-item2 button{
+    width: 100%;
+    height: 100%;
+}
+#btn1{
+    background: rgb(0,95,134);
+    color: white;
+    border: 1px solid rgb(0,95,134);
+}
+#btn2{
+	background: orange;
+    color: white;
+    border: 1px solid orange;
+}
+#btn3{
+   	background: #000000b8;
+    color: white;
+    border: 1px solid #000000b8;
+}
+.tr-cl:hover{
+	cursor: pointer;
+}

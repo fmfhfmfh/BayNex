@@ -1,0 +1,24 @@
+@charset "UTF-8";
+.fw-600, td a{
+	font-weight: 600;
+}
+.textColor {
+	color: black;
+}
+#selectState{
+	position: relative;
+	left: 1300px;
+	width: 200px;
+	border: 1px solid #999;
+	z-index: 1;
+	height: 28px;
+}
+.card{
+	min-height: 797px;
+}
+.mb-0{
+	color: #000000ba;
+}
+.resume-tb{
+	font-size: 18px;
+}

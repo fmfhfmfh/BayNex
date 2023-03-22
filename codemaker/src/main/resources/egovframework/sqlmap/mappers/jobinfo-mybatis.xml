@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.common.dao.JobInfoMapper">
+
+	
+
+<select id="selectJobInfo" resultType="kr.co.codemaker.common.vo.JobInfoVO" parameterType="kr.co.codemaker.common.vo.JobInfoVO">
+SELECT * 
+  FROM JOBINFO where JOBINFO_ID = #{jobInfoId}
+</select>
+<insert id="insertJobInfo" parameterType="kr.co.codemaker.common.vo.JobInfoVO">
+insert into jobInfo
+		values ('JOBINFO'||LPAD(JOBINFO_SEQ.NEXTVAL,4,'0'), #{jobinfoTitle}, #{jobinfoCont}, sysdate, 'N',null,null,
+		#{adminId})
+		<selectKey keyProperty="jobinfoId" resultType="String">
+				SELECT 'JOBINFO'||LPAD(JOBINFO_SEQ.CURRVAL,4,'0') FROM DUAL
+			</selectKey>
+</insert>
+<select id="selectAllJobInfo" resultType="kr.co.codemaker.common.vo.JobInfoVO" parameterType="java.util.HashMap">
+SELECT * FROM
+		(SELECT ROWNUM AS RN,
+		A.*
+		FROM (SELECT *
+		FROM JOBINFO
+		<where>
+			<if test="keyWord != '' and keyWord != null">
+				AND JOBINFO_TITLE LIKE '%' || #{keyWord} || '%'
+				OR JOBINFO_CONT LIKE '%' || #{keyWord} || '%')A)
+			</if>
+		</where>
+		<if test="keyWord == '' or keyWord == null">
+				ORDER BY JOBINFO_DATE DESC) A)
+		</if>
+		
+		WHERE RN BETWEEN (#{page} - 1) * #{pageSize} + 1 AND #{page} * #{pageSize}
+	
+</select>
+<update id="updateJobInfo" parameterType="kr.co.codemaker.common.vo.JobInfoVO">
+update jobInfo set
+		jobinfo_title = #{jobinfoTitle}, jobinfo_cont = #{jobinfoCont}, jobinfo_udate = sysdate, jobinfo_uwriter = #{jobinfoUwriter} where jobInfo_Id =
+#{jobinfoId}
+</update>
+<delete id="deleteJobInfo" parameterType="kr.co.codemaker.common.vo.JobInfoVO">
+update jobInfo set
+		jobinfo_out = 'Y' where jobinfo_id = #{jobinfoId}
+</delete>
+<select id="jobInfoTotalCnt" resultType="int">
+select count(*) from
+		jobInfo 
+		<where>
+			<if test="keyWord != '' and keyWord != null">
+				AND JOBINFO_TITLE LIKE '%' || #{keyWord} || '%'
+				OR JOBINFO_CONT LIKE '%' || #{keyWord} || '%'
+			</if>
+		</where>
+		
+</select>
+<select id="jobInfoTotalCntU" resultType="int">
+SELECT count(*) 
+  FROM JOBINFO 
+  <where>
+  	and JOBINFO_OUT = 'N'
+			<if test="keyWord != '' and keyWord != null">
+				AND JOBINFO_TITLE LIKE '%' || #{keyWord} || '%'
+				OR JOBINFO_CONT LIKE '%' || #{keyWord} || '%'
+			</if>
+		</where>
+</select>
+<select id="selectAllJobInfoU" resultType="kr.co.codemaker.common.vo.JobInfoVO" parameterType="java.util.HashMap">
+SELECT * FROM
+		(SELECT ROWNUM AS RN,
+		A.*
+		FROM (SELECT *
+		FROM JOBINFO
+		<where>
+		and JOBINFO_OUT = 'N'
+			<if test="keyWord != '' and keyWord != null">
+				AND JOBINFO_TITLE LIKE '%' || #{keyWord} || '%'
+				OR JOBINFO_CONT LIKE '%' || #{keyWord} || '%')A)
+			</if>
+		</where>
+		<if test="keyWord == '' or keyWord == null">
+				ORDER BY JOBINFO_DATE DESC) A)
+		</if>
+		
+		WHERE RN BETWEEN (#{page} - 1) * #{pageSize} + 1 AND #{page} * #{pageSize}
+</select>
+</mapper>

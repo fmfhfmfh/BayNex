@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.common.dao.NoticeMapper">
+
+	<select id="selectNotice" resultType="kr.co.codemaker.common.vo.NoticeVO" parameterType="kr.co.codemaker.common.vo.NoticeVO">
+	SELECT * 
+	  FROM NOTICE 
+	  WHERE notice_id = #{noticeId}
+	</select>
+	
+	<select id="noticeTotalCnt" resultType="int" parameterType="java.lang.String">
+	select count(*) from notice 
+				<where>
+					<choose>
+						<when test="searchOption == 1 or searchOption == 2">
+							AND NOTICE_HEAD LIKE '%' || #{searchOption} || '%'
+						</when>
+						<otherwise>
+							AND NOTICE_HEAD LIKE '%' || '1' || '%'
+						</otherwise>
+					</choose>
+					<if test="keyWord != '' and keyWord != null">
+						AND	(NOTICE_CONT LIKE '%' || #{keyWord} || '%' 
+						 OR NOTICE_TITLE LIKE '%' || #{keyWord} || '%')
+					</if>
+				</where>
+	</select>
+	
+	<select id="selectAllNotice" resultType="kr.co.codemaker.common.vo.NoticeVO" parameterType="java.util.HashMap">
+SELECT B.* FROM
+			(SELECT ROW_NUMBER() over(ORDER BY NOTICE_ID DESC) AS RN,
+			       A.*
+			  FROM (SELECT *
+					FROM NOTICE
+					<where>
+						<choose>
+							<when test="searchOption == 1 or searchOption == 2">
+								AND NOTICE_HEAD LIKE CONCAT ('%', #{searchOption}, '%')
+							</when>
+						</choose>
+						<if test='keyWord != "" and keyWord != null'>
+							AND	(NOTICE_CONT LIKE CONCAT('%', #{keyWord}, '%') 
+							 OR NOTICE_TITLE LIKE CONCAT('%', #{keyWord}, '%'))
+						</if>
+					</where>
+					) A
+					)B
+					<where>
+					 AND B.RN BETWEEN (#{page} - 1) * #{pageSize} + 1 AND #{page} * #{pageSize}
+					</where>
+</select>
+	
+	<insert id="insertNotice" parameterType="kr.co.codemaker.common.vo.NoticeVO">
+		insert into notice values ('NOTICE'||LPAD(NOTICE_SEQ.NEXTVAL,4,'0'), #{noticeTitle}, #{noticeCont}, sysdate, 'N', #{noticeHead}, NULL, NULL,#{adminId})
+			<selectKey keyProperty="noticeId" resultType="String">
+				SELECT 'NOTICE'||LPAD(NOTICE_SEQ.CURRVAL,4,'0') FROM DUAL
+			</selectKey>
+		</insert>
+
+	<update id="updateNotice" parameterType="kr.co.codemaker.common.vo.NoticeVO">
+update notice set notice_title = #{noticeTitle}, notice_cont = #{noticeCont}, notice_udate = sysdate, notice_uwriter = #{noticeUwriter} where notice_id = #{noticeId}
+</update>
+	
+	<delete id="deleteNotice" parameterType="kr.co.codemaker.common.vo.NoticeVO">
+update notice set
+				notice_out = 'Y' where notice_id = #{noticeId}
+</delete>
+<select id="noticeTotalCntU" resultType="int" parameterType="String">
+select count(*) from notice 
+
+				<where>
+				and NOTICE_OUT = 'N'
+					<choose>
+						<when test="searchOption == 1 or searchOption == 2">
+							AND NOTICE_HEAD LIKE '%' || #{searchOption} || '%'
+						</when>
+						<otherwise>
+							AND NOTICE_HEAD LIKE '%' || '1' || '%'
+						</otherwise>
+					</choose>
+					<if test="keyWord != '' and keyWord != null">
+						AND	(NOTICE_CONT LIKE '%' || #{keyWord} || '%' 
+						 OR NOTICE_TITLE LIKE '%' || #{keyWord} || '%')
+					</if>
+				</where>
+</select>
+<select id="selectAllNoticeU" parameterType="java.util.HashMap" resultType="kr.co.codemaker.common.vo.NoticeVO">
+SELECT B.* FROM
+			(SELECT ROW_NUMBER() over(ORDER BY NOTICE_ID DESC) AS RN,
+			       A.*
+			  FROM (SELECT *
+					FROM NOTICE
+					<where>
+						<choose>
+							<when test="searchOption == 1 or searchOption == 2">
+								AND NOTICE_HEAD LIKE CONCAT ('%', #{searchOption}, '%')
+							</when>
+						</choose>
+						<if test='keyWord != "" and keyWord != null'>
+							AND	(NOTICE_CONT LIKE CONCAT('%', #{keyWord}, '%') 
+							 OR NOTICE_TITLE LIKE CONCAT('%', #{keyWord}, '%'))
+						</if>
+					</where>
+					) A
+					) B
+					<where>
+					 AND B.RN BETWEEN (#{page} - 1) * #{pageSize} + 1 AND #{page} * #{pageSize}
+					</where>
+					
+</select>
+</mapper>

@@ -1,0 +1,107 @@
+@charset "UTF-8";
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.nanumgothic * {
+ font-family: 'Nanum Gothic', sans-serif;
+}
+
+.main-box{
+    width: 100%;
+    height: 837px;
+    display: flex;
+    flex-direction: column;
+}	
+.coding-box{
+	width: 100%;
+	height: 60%;
+}
+#code{
+    width: 100%;
+    background: #000000cc;
+    color: white;
+    resize: none;
+}
+.CodeMirror .cm-s-eclipse .CodeMirror-wrap{
+	height: 100%;
+}
+.CodeMirror{
+	font-family: 'Font Awesome 5 Free' !important;
+	background: #263747 !important;
+}
+.CodeMirror-cursors{
+	caret-color : white !important;
+	color: white !important;
+}
+pre.CodeMirror-line:visited{
+	background: #202b3d !important;
+}
+.CodeMirror-gutters{
+   	border: none !important;
+    background: #263747 !important;
+}
+.CodeMirror span{
+	color: white;
+}
+.coding-container{
+	background: #263747;
+}
+.result-box-area{
+    height: 40%;
+    width: 100%;
+}
+.h3-div{
+    border-bottom: 3px solid #bdbdbd99;
+    border-top: 3px solid #bdbdbd99;
+}
+.h3-div{
+	color : #ffffffb8;
+}
+.result-box-area h3{
+	font-weight: 600;
+    font-size: 20px;
+    margin-left: 27px;
+}
+#result{
+	margin-left: 25px;
+	font-size: 18px;
+	font-family: 'LotteMartDream';
+    color: #ffffffb8;
+}
+#run-box{
+    width: 100%;
+    height: 16%;
+    padding-top: 11px;
+}
+#run{
+/*     display: inline-block; */
+    width: 100px;
+    height: 86%;
+    background: rgb(0,94,135);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    float: right;
+    margin-right: 27px;
+}
+#result-cl{
+	height : 82%;
+    border-bottom: 3px solid #bdbdbd99;
+}
+.result-item{
+	overflow: auto;
+	height: 90%;
+}
+.lang-select{
+	width: 100%;
+    font-size: 20px;
+    border-bottom: 3px solid #bdbdbd99;
+}
+.lang-select div{
+	margin-left: 21px; 	
+}
+.fc-b8{
+	color: #ffffffb8;	
+}
+.list-btn{
+	margin-left: 12px;
+}

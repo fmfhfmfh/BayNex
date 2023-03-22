@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/websocket
+       http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+    <!-- 웹소켓 핸들러(프론트) 선언과 매핑 -->
+
+    <!-- 웹소켓 클라이언트가 '/web-notify' 로 접속하면 -->
+	<!-- notifyHandler라는 bean으로 처리하겠다는 것 (아래 bean 선언과 연결하여..) -->
+    <websocket:handlers>
+	  <websocket:mapping handler="notifyHandler" path="/web-notify" />
+	  <websocket:handshake-interceptors>
+		<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+   	  </websocket:handshake-interceptors>
+	</websocket:handlers>
+
+    <!-- 위에서 선언한 핸들러의 bean 설정 -->
+    <!-- Controller의 경로를 정확시 설정해준다 -->
+    <bean id="notifyHandler" class="kr.co.codemaker.common.controller.NotifyHandler" />
+    
+    <websocket:handlers>
+      <websocket:mapping handler="chatHandler" path="/chat-ws" />
+	  <websocket:handshake-interceptors>
+		<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+   	  </websocket:handshake-interceptors>
+  	</websocket:handlers>
+
+
+  	<bean id="chatHandler" class="kr.co.codemaker.user.board.chat.controller.ChatWebSocketHandler" />
+    
+    
+
+	
+
+</beans>

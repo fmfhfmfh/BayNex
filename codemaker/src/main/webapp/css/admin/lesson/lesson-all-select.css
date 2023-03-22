@@ -1,0 +1,142 @@
+@charset "UTF-8";
+.fw-600{
+	font-weight: 600 !important;
+}
+.card{
+	width: 95%;
+	margin: 0 auto;
+    min-height: 784px;
+    height: auto;
+}
+.lesson-request{
+    display: flex;
+    flex-direction: column;
+    padding: 40px 55px 0;
+}
+h2{
+	font-size: 40px;
+}
+.request-info{
+    margin: 10px 0 30px;
+    text-align: center;
+}
+.request-info thead{
+	font-size: 24px;
+}
+.thead-tr{
+    background: rgb(0,94,135);
+    color: white;
+    height: 45px;
+}
+.request-info td{
+	border-bottom: 2px solid #afadad6b;
+	font-size: 18px;
+}
+.request-result{
+    width: 100%;
+    text-align: center;
+}
+.result-tr{
+	height: 35px;
+    background: #2b545885;
+}
+.result-tr th{
+    color: white;
+	font-weight: 600;
+	font-size: 18px;
+}
+#lesidx td{
+	font-size: 16px;
+    font-weight: 600;
+    border-bottom: 2px solid #80808052;
+}
+.run-btn-box{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.run-btn{
+    display: inline-block;
+    width: 80px;
+    margin-left: 15px;
+    height: 33px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+}
+#regBtn{
+    background: rgb(0,94,135);
+}
+#cancle{
+    background: #d00606;
+}
+#lesidx tr:hover{
+	cursor: pointer;
+}
+.a2{
+	color: red;
+}
+.a4{
+	color: blue;
+}
+#wul {
+	width: 1100px;
+	margin-left: 200px;
+}
+#hd {
+	margin-left: 15px;
+}
+#subject {
+	width: 100px;
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#lesson {
+	width: 400px;
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.right {
+	float: right;
+	text-align: right;
+}
+#selectTab {
+	padding-left: 30px;
+}
+#containerId {
+	width: 1300px;
+	margin-left: 140px;
+}
+#delBtn {
+	width: 40px;
+	height: 35px;
+	font-size: 11px;
+	float: left;
+	margin-left: 85px;
+	padding: 0px 0px 0px 0px
+}
+#upBtn {
+	width: 40px;
+	height: 35px;
+	font-size: 11px;
+	float: right;
+	padding: 0px 0px 0px 0px
+}
+#addBtn {
+	margin-bottom: 20px;
+}
+.form-control-label {
+	font-size: .875rem;
+	font-weight: 600;
+	color: #525f7f;
+}
+#less {
+	display: inline-block;
+}
+
+#sub {
+	display: inline-block;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.common.dao.FilesMapper">
+
+	<select id="selectFiles" parameterType="kr.co.codemaker.common.vo.FilesVO" resultType="kr.co.codemaker.common.vo.FilesVO">
+SELECT * 
+	  FROM FILES
+	  WHERE FILES_ID = #{filesId}
+</select>
+	
+	
+	
+<insert id="insertFiles" parameterType="kr.co.codemaker.common.vo.FilesVO">
+	INSERT INTO FILES VALUES ('FILES'||LPAD(FILES_SEQ.NEXTVAL,4,'0'), #{filesGroup}, #{filesNm}, #{filesPath})
+</insert>
+
+<select id="selectAllFiles" parameterType="kr.co.codemaker.common.vo.FilesVO" resultType="kr.co.codemaker.common.vo.FilesVO">
+SELECT * FROM FILES WHERE FILES_GROUP = #{filesGroup}
+</select>
+<delete id="deleteFiles" parameterType="kr.co.codemaker.common.vo.FilesVO">
+DELETE FROM FILES WHERE FILES_ID = #{filesId}
+</delete>
+</mapper>

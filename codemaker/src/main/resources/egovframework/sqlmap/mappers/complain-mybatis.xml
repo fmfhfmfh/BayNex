@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.common.dao.ComplainMapper"><select id="selectAllComplain" resultType="kr.co.codemaker.common.vo.ComplainVO" parameterType="java.util.HashMap">
+SELECT * FROM
+		(SELECT ROWNUM AS RN,
+		A.*
+		FROM (SELECT *
+		FROM COMPLAIN) A
+	ORDER BY CP_ID DESC)
+	WHERE RN BETWEEN (#{page} - 1) * #{pageSize} + 1 AND #{page} * #{pageSize}
+</select>
+<select id="selectComplain" parameterType="kr.co.codemaker.common.vo.ComplainVO" resultType="kr.co.codemaker.common.vo.ComplainVO">
+SELECT * 
+  FROM COMPLAIN WHERE CP_ID =#{cpId}
+</select>
+<insert id="insertComplain" parameterType="kr.co.codemaker.common.vo.ComplainVO">
+INSERT INTO COMPLAIN VALUES ('CP'||LPAD(CP_SEQ.NEXTVAL,4,'0'), sysdate, #{cpCont}, 'N', '1',#{cpGn}, #{replyId,jdbcType=VARCHAR}, #{qnaId,jdbcType=VARCHAR},#{plaintiff}, #{defendant})
+</insert>
+<update id="checkComplain" parameterType="kr.co.codemaker.common.vo.ComplainVO">
+UPDATE complain set cp_state = 'Y' where cp_ID = #{cpId}
+</update>
+<select id="selectBlackList" resultType="kr.co.codemaker.common.vo.UserVO">
+select * from users a, (select b.user_id, count(*) as count 
+  from complain a, users b 
+ where cp_state = 'Y' 
+   and a.defendant = b.user_id
+ group by b.user_id
+ having count(*) >= 3) b where a.user_id = b.user_id
+</select>
+<select id="selectReplyQna" resultType="String" parameterType="kr.co.codemaker.common.vo.ComplainVO">
+SELECT B.QNA_ID
+  FROM REPLY A, QNA B WHERE A.QNA_ID = B.QNA_ID AND A.REPLY_ID = #{replyId}
+</select>
+<update id="insertBlackList" parameterType="kr.co.codemaker.common.vo.UserVO">
+UPDATE users set USER_BLACK = 'Y' WHERE USER_ID = #{userId}
+</update>
+<select id="complainTotalCnt" resultType="int">
+SELECT count(*) 
+  FROM COMPLAIN
+</select>
+<select id="selectComplainU">
+select a.user_id 
+  from users a, complain b, reply c, qna d 
+ where a.user_id = C.REPLY_WRITER
+ <if test="replyId.indexOf('REPLY') == -1">
+   and c.reply_Id = b.reply_id
+   and b.REPLY_ID = #{replyId}
+  </if> 
+   <if test="b.reply_gn = '2'">
+   and d.QNA_ID = b.QNA_ID
+   and b.QNA_ID = #{replyId}
+   </if>
+   group by a.user_id
+</select>
+
+</mapper>

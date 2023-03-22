@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.textColor {
+	color: black;
+}
+.card{
+	width:95%;
+	margin: 0 auto; 	
+}

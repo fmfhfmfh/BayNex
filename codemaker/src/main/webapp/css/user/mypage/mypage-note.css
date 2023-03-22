@@ -1,0 +1,59 @@
+@charset "UTF-8";
+#pt {
+	font-size: 25px;
+}
+#pdfd {
+	text-align: right;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.note-box{
+	width: 92%;
+    margin: 30px auto;
+    height: auto;
+    min-height: 1080px;
+}
+.note-box-item{
+	padding: 40px 50px 0px;
+}
+.note-box-item h3{
+	font-size: 40px;
+}
+.note-tb{
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    border-top: 3px solid #808080ad;
+    border-bottom: 2px solid #808080ad;
+}
+.note-tb thead{
+	font-size: 25px;
+}
+.note-tb thead th{
+	padding: 15px 0; 	
+}
+.note-tb tbody td{
+	border-top: 1px solid #80808042;
+    font-size: 19px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+.note-tb tbody td span{
+	font-size: 19px;
+	font-weight: 600;
+}
+#noteList tr:hover{
+	cursor: pointer;
+}
+.pdf-btn{
+    display: inline-block;
+    width: 110px;
+    height: 30px;
+    background: rgb(0,95,134);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+#downBtn{
+	background: #ad7f00;
+}

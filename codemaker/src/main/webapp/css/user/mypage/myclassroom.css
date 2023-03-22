@@ -1,0 +1,85 @@
+div#recent-orders {
+	margin: 112px 430px 67px 23%;
+}
+tbody#selectMyLesson {
+    text-align: center;
+}
+thead {
+    text-align: center;
+}
+.card-table-border-none {
+	margin-bottom: 1.5rem;
+}
+.card-body.pt-0.pb-5 {
+    margin: 0 auto;
+}
+
+.card-table-border-none .card-header {
+	padding-left: 1.88rem;
+	padding-right: 1.88rem;
+	padding-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	background-color: #ffffff;
+	border-bottom: none;
+}
+
+@media ( min-width : 1500px) {
+	.card-table-border-none .card-header {
+		padding-left: 3.125rem;
+		padding-right: 3.125rem;
+
+	}
+}
+
+.card-table-border-none .card-header h2 {
+	color: #1b223c;
+	margin-bottom: 0.312rem;
+	font-size: 1.25125rem;
+	line-height: 1;
+}
+
+.card-table-border-none .card-header-border-bottom {
+	background-color: #ffffff;
+	padding-top: 28px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e5e9f2;
+}
+
+.card-table-border-none .card-header-border-bottom h2 {
+	margin-bottom: 0;
+}
+
+.card-table-border-none .card-body {
+	padding: 1.9rem 1.88rem;
+}
+
+@media ( min-width : 1500px) {
+	.card-table-border-none .card-body {
+		padding: 3.125rem 3.125rem;
+	}
+}
+
+.card-table-border-none .card-footer {
+	border-top: 1px solid #e5e9f2;
+	padding-left: 1.88rem;
+	padding-right: 1.88rem;
+}
+
+@media ( min-width : 1500px) {
+	.card-table-border-none .card-footer {
+		padding-left: 3.125rem;
+		padding-right: 3.125rem;
+	}
+}
+
+.card-table-border-none tbody td, .card-table-border-none thead th {
+	border: none;
+}
+
+.card-table-border-none tbody td {
+	padding: 0;
+	font-size: 0.98rem;
+	padding-top: 2.25rem;
+}

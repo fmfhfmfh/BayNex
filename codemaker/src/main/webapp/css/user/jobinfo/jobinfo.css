@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+	body, p{
+		font-family: 'LotteMartDream' !important;
+	}
+	.filesButton{
+		background-color : #D4D4D4;
+		color : black;
+	}
+	.card{
+		width: 70%;
+	    height: 899px;
+	    margin: 20px auto 0;
+	    border: none;
+	    padding: 40px;
+	    font-family: 'LotteMartDream';
+	}
+	.titleDiv{
+		text-align:center;
+		margin:20px;
+	}
+	#title{
+		color : #1d25af;
+		font-weight: 600;
+		font-family: 'LotteMartDream';
+		font-size: 35px
+	}
+	.row{
+		margin: 50px 130px 0;
+		background-color: white;
+	}
+	.btnClass{
+		float:right;
+		width: 80px;
+		margin-right: 10px;
+	}
+	.header{
+		display: flex;
+		justify-content: space-between;
+	}
+	.headerId{
+		width: 100%;
+		text-align: right;
+		font-size: 20px;
+    	font-weight: 600;
+	} 
+	.headerDate{
+		width: 100%;
+		text-align: right;
+		color: #a9a8a8;
+   		font-size: 17px;
+    	font-weight: 400;
+    	margin-top: -10px;
+	}
+	#idImg{
+		width: 20px;
+	}
+	.contentDiv{
+		margin: 30px;
+	    border: 2px solid #c1bebe;
+	    height: 700px;
+	    padding: 20px;
+	    font-size: 18px;
+    	font-weight: 500;
+    	overflow: auto;
+	}
+	#listbutton{
+		width: 80px;
+   		margin-left: 30px;
+	}

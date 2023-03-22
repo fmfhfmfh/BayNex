@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.teacher.course.lesson.dao.LessonIndexMapper">
+
+	<select id="selectLessonIndex" parameterType="String" resultType="kr.co.codemaker.teacher.course.lesson.vo.LessonIndexVO">
+		SELECT *
+ 		 FROM lesson_index
+ 		 <where>
+	 		AND les_id=#{lesId}
+ 		 </where>
+ 		     ORDER BY lidx_num ASC
+	</select>
+	
+	<insert id="insertLessonIndex" parameterType="kr.co.codemaker.teacher.course.lesson.vo.LessonIndexVO">
+	INSERT INTO lesson_index(
+		lidx_id,
+	    lidx_num,
+	    lidx_cont,
+	    lidx_path,
+	    lidx_durtime,
+	    les_id)
+	VALUES('LIDX'||LPAD(LESSON_IDX_SEQ.NEXTVAL,4,'0'), #{lidxNum}, #{lidxCont}, #{lidxPath},#{lidxDurtime},#{lesId})
+	</insert>
+	
+	<update id="updateLessonIndex" parameterType="kr.co.codemaker.teacher.course.lesson.vo.LessonIndexVO">
+UPDATE lesson_index
+  		   SET lidx_cont=#{lidxCont},
+  		   		 lidx_path=#{lidxPath},
+  		   		 lidx_durtime=#{lidxDurtime}
+  		   <where>
+	  	 	 AND lidx_id=#{lidxId}
+  		   </where>
+</update>
+	
+	<delete id="deleteLessonIndex" parameterType="java.lang.String">
+	 	DELETE FROM lesson_index 
+	 	<where>
+	 		AND lidx_id=#{lidxId}
+	 	</where>
+	</delete>
+	
+</mapper>

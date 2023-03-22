@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.admin.company.dao.AdminFilesMapper">
+
+	<select id="selectFiles" parameterType="kr.co.codemaker.admin.company.vo.FilesVO" resultType="kr.co.codemaker.admin.company.vo.FilesVO"> 
+		SELECT * 
+		  FROM files
+		  WHERE files_id = #{filesId}
+	</select>	
+		
+	<insert id="insertFiles" parameterType="kr.co.codemaker.admin.company.vo.FilesVO">
+		INSERT INTO files
+			 VALUES ('FILES'||LPAD(FILES_SEQ.NEXTVAL,4,'0'),null, #{filesNm}, #{filesPath})
+</insert>
+
+</mapper>

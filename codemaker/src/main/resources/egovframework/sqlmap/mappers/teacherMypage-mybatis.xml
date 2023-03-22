@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.teacher.info.dao.TeacherMapper"><select id="selectTeacher" parameterType="kr.co.codemaker.teacher.signup.vo.TeacherVO" resultType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+SELECT * 
+  FROM TEACHER WHERE TCH_ID = #{tchId}
+</select>
+<update id="updateTeacher" parameterType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+UPDATE TEACHER set 
+TCH_PASS = #{tchPass},
+TCH_TEL = #{tchTel},
+TCH_PROFILE = #{tchProfile},
+TCH_INTRO = #{tchIntro}
+where tch_id = #{tchId}
+</update>
+
+<select id="selectResume" resultType="kr.co.codemaker.teacher.signup.vo.ResumeVO" parameterType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+SELECT * FROM resume WHERE RES_ID = #{resId}
+</select>
+<select id="selectAllLesson" resultType="kr.co.codemaker.admin.teacher.vo.LessonVO" parameterType="kr.co.codemaker.teacher.signup.vo.TeacherVO">
+SELECT b.* , a.*
+		FROM SUBJECT b,(SELECT * FROM lesson
+		            WHERE TCH_ID = #{tchId}) a
+		WHERE b.sub_id = a.sub_id
+</select>
+
+</mapper>

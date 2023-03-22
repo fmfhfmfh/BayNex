@@ -1,0 +1,54 @@
+@charset "UTF-8";
+.empty-resume,.resume-box{
+	height: 791px;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.empty-resume span{
+    font-size: 30px;
+    font-weight: 600;
+}
+.empty-resume button{
+    font-size: 20px;
+    font-weight: 600;
+    background: rgb(0,95,134);
+    color: white;
+    width: 200px;
+    height: 37px;
+    margin-top: 8px;
+}
+.res-fail{
+	color: red;
+}
+.res-save{
+	color: rgb(0,95,134);
+}
+.res-success{
+	color: blue;
+}
+.res-com{
+	color: orange;
+}
+table{
+	width: 85%;
+    margin: 0 auto;
+    text-align: center;
+}
+th{
+	text-align: center;
+	font-size: 27px;
+}
+tr{
+	border-bottom: 2px solid #00000052;
+}
+td{
+	font-weight: 600;
+	font-size: 20px;
+}
+#res-tr{
+	cursor: pointer;
+}

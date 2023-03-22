@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.article{
+	width: 41%;
+	margin: 35px auto 0;
+	max-height: 798px;
+}
+.ts-23{
+	font-size: 23px;
+	font-weight: 600;
+	margin-right: 1;
+}
+.ttype{
+	font-size: 20px;
+    height: 35px;
+    width: 400px;
+    background: #f8f9fc;
+    border-bottom: solid 1px #8f8fa1;
+}
+th{
+	padding: 10px;
+}
+.butBack{
+	background: #ffff00;
+	width: 90px;
+	height: 35px;
+	font-weight: 600;
+}
+.sub{
+	background: #005f86;
+	color: #fff;
+	width: 90px;
+	height: 35px;
+}
+.buttons{
+	float: right;
+}

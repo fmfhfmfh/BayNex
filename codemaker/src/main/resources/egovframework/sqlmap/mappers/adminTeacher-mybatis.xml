@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="kr.co.codemaker.admin.teacher.dao.AdminTeacherMapper">
+	<select id="selectAllTeacher" resultType="kr.co.codemaker.admin.teacher.vo.TeacherVO" parameterType="kr.co.codemaker.admin.teacher.vo.TeacherVO">
+		SELECT * FROM teacher
+		<where>
+			<if test="tchGn !='' and tchGn !=null">
+				AND TCH_GN = #{tchGn}
+			</if>
+		</where>
+		ORDER BY TCH_NM
+	</select>
+	
+	<select id="selectTeacher" resultType="kr.co.codemaker.admin.teacher.vo.TeacherVO" parameterType="kr.co.codemaker.admin.teacher.vo.TeacherVO">
+		SELECT * FROM teacher
+		WHERE TCH_ID = #{tchId}
+	</select>
+	
+	<select id="selectResume" resultType="kr.co.codemaker.admin.teacher.vo.ResumeVO" parameterType="kr.co.codemaker.admin.teacher.vo.ResumeVO">
+		SELECT * FROM resume WHERE RES_CODE = #{resCode}
+	</select>
+	<select id="selectLesson" resultType="kr.co.codemaker.admin.teacher.vo.LessonVO" parameterType="kr.co.codemaker.admin.teacher.vo.LessonVO">
+		SELECT b.* , a.*
+		FROM SUBJECT b,(SELECT * FROM lesson
+		            WHERE TCH_ID = #{tchId}) a
+		WHERE b.sub_id = a.sub_id
+	</select>
+</mapper>

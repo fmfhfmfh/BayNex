@@ -1,0 +1,110 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 300;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff') format('woff');
+}
+.joinBox{
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.formbox{
+	background: white;
+    margin: 170px auto 0;
+    width: 46%;
+    min-height: 482px;
+    box-shadow:0 5px 26px 0 rgba(138, 124, 153, 0.22);
+    border-radius: 2.1rem;
+}
+.formboxbox{
+	margin-top: 15%;
+}
+
+.formform{
+	width:450px;
+	margin:0px auto;
+	display: block;
+}
+
+.headerbox{
+	margin:0px auto 0px 261px;
+	margin-bottom: 98px;
+	width:300px;
+	height: 70px;
+}
+.headerbox > p {
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: #69666d;
+}
+.codemakerLogo{
+	width: 15.3rem;
+    height: 5.2rem;
+    cursor: pointer;
+    margin-top: 27px;
+}
+
+.InteractiveInput{
+	width:400px;
+	margin:0px auto;
+}
+.InteractiveInput input{
+	border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: #DDE0EA;
+    border-width: thin;
+    border-radius: 0;
+    outline: transparent;
+    width: 100%;
+    color: #343236;
+}
+
+.titleText {
+    text-align: left;
+    color: #d9b6f5;
+    font-size: 1.0rem;
+    margin-left: 0.4rem;
+    margin-top: 0.4rem;
+}
+.SignForm__submitBtnWrapper .ButtonGeneral {
+    margin-top: 1.8rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 1.2rem;
+    outline: none;
+    width: 250px;
+    height: 20px;
+    margin:51px auto;
+    padding-top: 1.4rem;
+    padding-bottom: 1.3rem;
+    box-shadow: 0 0.8rem 1.6rem 0 rgba(143, 0, 255, 0.13);
+    background-image: linear-gradient(276deg, #710ad2, #8e43e6);
+    background-color: #005F86;
+}
+.ButtonGeneral__purple {
+    color: #ffffff;
+    background-image: linear-gradient(283deg, #6000c4, #8428ee);
+}
+
+.ButtonGeneral {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.3rem 2.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 1.2rem;
+    outline: transparent;
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.xtop{
+    margin-top:30px;
+
+}

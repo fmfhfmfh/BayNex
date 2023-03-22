@@ -1,0 +1,59 @@
+@charset "UTF-8";
+.schResulrBox{
+	width: 500px;
+	height: 197px;
+    border: solid 1px #e0e0e0;
+}
+.schResulrBox .schResult{
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	margin-top: 20px;
+}
+.schResulrBox .schResult .schResultCell{
+	display: table-cell;
+	padding: 60px 0;
+	height: 75px;
+	text-align: center;
+	vertical-align: middle; 
+}
+.userid{
+	color: #00bbc1;
+	font-weight: bold;
+}
+.div2{
+	margin: 0 auto;
+}
+.text{
+	font-size : 20px;
+}
+.addBoxArea{
+	width: 500px;
+	height : 40px;
+	margin-top: 25px;
+	text-align: center;
+}
+.addBox{
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+}
+.addBoxCell{
+	display: inline-block;
+	width: 245px;
+	height: 40px;
+	border : 1px solid #e0e0e0;
+}
+.addAtag{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-top: 8px;
+}
+.login{
+	background-color: #005f86;
+	margin-left: 5px;
+}
+.findPw{
+	margin-right: 5px;
+}

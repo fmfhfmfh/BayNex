@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.user.mypage.dao.MyPayLessonMapper">
+	<!-- 회원이 수강중인 과목리스트 -->
+	<select id="selectAllPayLesson" resultType="kr.co.codemaker.user.mypage.vo.PayLessonInfoVO" parameterType="kr.co.codemaker.user.mypage.vo.PayLessonInfoVO">
+		SELECT a.pay_refund, a.pay_date, a.cos_term, b.les_nm,b.les_term,b.les_id,b.les_cont, c.tch_nm, d.sub_nm
+		FROM pay a, lesson b, teacher c, subject d
+		WHERE a.les_id = b.les_id AND b.tch_id = c.tch_id AND b.sub_id = d.sub_id AND a.pay_refund='N'
+		AND a.user_id =#{userId} AND a.cos_term > SYSDATE
+		ORDER BY a.pay_date DESC
+	</select>
+	
+	<!-- 회원, 수강이 끝난 과목 -->
+	<select id="selectAllPayEnd" resultType="kr.co.codemaker.user.mypage.vo.PayLessonInfoVO" parameterType="kr.co.codemaker.user.mypage.vo.PayLessonInfoVO">
+		SELECT a.pay_refund, a.pay_date, a.cos_term, b.les_nm,b.les_term,b.les_id,b.les_cont, c.tch_nm, d.sub_nm
+		FROM pay a, lesson b, teacher c, subject d
+		WHERE a.les_id = b.les_id AND b.tch_id = c.tch_id AND b.sub_id = d.sub_id AND a.pay_refund='N'
+		AND a.user_id =#{userId} AND SYSDATE > a.cos_term
+		ORDER BY a.pay_date DESC
+	</select>
+</mapper>

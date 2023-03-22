@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.teacher.course.exam.dao.AnswersheetMapper">
+
+<select id="selectAnswersheet" parameterType="kr.co.codemaker.teacher.course.exam.vo.QuestionVO" resultType="kr.co.codemaker.teacher.course.exam.vo.AnswersheetVO">
+SELECT
+    ans_id,
+    ans_cont,
+    que_id
+FROM
+    answersheet
+WHERE
+	que_id = #{queId}
+</select>
+<insert id="insertAnswersheet" parameterType="kr.co.codemaker.teacher.course.exam.vo.AnswersheetVO">
+INSERT INTO answersheet (
+    ans_id,
+    ans_cont,
+    que_id
+) VALUES (
+    'ANS'||LPAD(ANS_SEQ.NEXTVAL,4,'0'),
+    #{ansCont},
+    #{queId}
+)
+</insert>
+<update id="updateAnswersheet" parameterType="kr.co.codemaker.teacher.course.exam.vo.AnswersheetVO">
+UPDATE answersheet
+    SET
+        ans_cont = #{ansCont}
+WHERE
+    	ans_id = #{ansId}
+</update>
+<delete id="deleteAnswersheet" parameterType="kr.co.codemaker.teacher.course.exam.vo.AnswersheetVO">
+DELETE FROM answersheet
+WHERE
+    que_id = #{queId}
+</delete>
+</mapper>

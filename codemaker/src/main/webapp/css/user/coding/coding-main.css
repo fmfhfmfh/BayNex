@@ -1,0 +1,35 @@
+@charset "UTF-8";
+.cmenu-container{
+    display: flex;
+    min-height: 867px;
+    height: auto;
+    justify-content: space-around;
+    padding: 140px;
+    background: #383838d6;
+}
+.cmenu-box{
+	width : 600px;
+	border: 5px solid #afafaf;
+	border-radius: 30px;
+	background: #00000073;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cmenu-box a{
+	display: inline-block;
+    text-align: center;
+    font-size: -webkit-xxx-large;
+    font-weight: 700;
+    margin-top: 7px;
+    color: white;
+}
+.cont-box{
+	display: flex;
+	flex-direction: column;
+	margin-top: 42px;
+}
+.cont-box img{
+	display : block;
+	height: 334px;
+}

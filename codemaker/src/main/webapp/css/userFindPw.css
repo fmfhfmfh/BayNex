@@ -1,0 +1,69 @@
+@charset "UTF-8";
+.cngBox{
+    position: relative;
+	width: 100%;
+	height: 40px;
+	display: inline-block;
+    border: solid 1px #e0e0e0;
+    background-color: white;
+}
+.cngSpan{
+    display: block;
+	padding: 4px 11px 6px;
+    width: auto;
+    height: 40px;
+    line-height: 28px;
+}
+.cngSpan label{
+	position: absolute;
+    left: 11px;
+    top: 1px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.cngSpan input{
+    padding: 0;
+    height: 28px;
+    line-height: 27px;
+    font-size: 13px;
+    font-weight: bold;
+    width: 100%;
+}
+.cngResult{
+    display: table;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    padding: 40px 20px;
+    background-color: #f7f7f7;
+}
+.textS{
+	font-style: normal;
+}
+.cngResulrBox{
+	width: 500px;
+    height: 100%;
+	border-top: solid 1px #e0e0e0;
+    border-bottom: solid 1px #e0e0e0;
+}
+.mar{
+	margin-top: 10px;
+}
+.txt{
+    font-style: normal;
+    color: white;
+}
+.cngBox.mar a{
+	margin: 0;
+    display: block;
+}
+.cngBox.mar a:hover{
+	cursor: pointer;
+}
+.cngBox.mar a span{
+    text-align: center;
+    height: 38px;
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.classroom.exam.dao.ExamScoreUserMapper">
+
+<select id="selectAllExamScore" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="kr.co.codemaker.user.classroom.exam.vo.ExamScoreVO">
+SELECT
+    e.exam_id,
+    es.user_id,
+    NVL(es.es_fscore, 0) es_fscore,
+    NVL(es.es_lscore, 0) es_lscore,
+    es.es_edate
+FROM
+    examscore es, exam e
+WHERE 
+	es.exam_id(+) = e.exam_id
+AND 
+	es.user_id = #{userId}
+</select>
+<insert id="insertExamScore" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamScoreVO">
+INSERT INTO examscore (
+    exam_id,
+    es_fscore,
+    es_lscore,
+    user_id,
+    es_edate
+) VALUES (
+    #{examId},
+    #{esFscore},
+    #{esLscore},
+    #{userId},
+    SYSDATE
+)
+</insert>
+<update id="updateExamScore" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamScoreVO">
+UPDATE examscore
+    SET
+         es_lscore = #{esLscore},
+         es_edate = SYSDATE
+WHERE
+    exam_id = #{examId}
+AND
+	user_id = #{userId}
+</update>
+<select id="selectExamScore" parameterType="kr.co.codemaker.user.classroom.exam.vo.ExamVO" resultType="kr.co.codemaker.user.classroom.exam.vo.ExamScoreVO">
+SELECT
+    e.exam_id,
+    es.es_fscore,
+    es.es_lscore,
+    es.user_id,
+    es.es_edate,
+    e.exam_nm
+FROM
+    examscore es, exam e
+WHERE
+	e.exam_id = #{examId}
+AND
+	e.exam_id = es.exam_id
+AND
+	es.user_id = #{userId}
+</select>
+</mapper>

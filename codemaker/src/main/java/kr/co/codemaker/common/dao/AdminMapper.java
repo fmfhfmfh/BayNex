@@ -1,0 +1,10 @@
+package kr.co.codemaker.common.dao;
+
+//
+//IMPORT EGOVFRAMEWORK.RTE.PSL.DATAACCESS.MAPPER.MAPPER;
+//
+//@MAPPER("ADMINMAPPER")
+//PUBLIC INTERFACE ADMINMAPPER {
+//	
+//	
+//}

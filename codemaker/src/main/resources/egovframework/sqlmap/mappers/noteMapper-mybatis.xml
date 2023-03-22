@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.user.course.note.dao.NoteMapper">
+
+<select id="selectPageNote" resultType="kr.co.codemaker.user.course.note.vo.NoteVO" parameterType="kr.co.codemaker.user.course.note.vo.NoteVO">
+SELECT *
+  FROM
+    (SELECT a.*, ROWNUM AS rn
+  	   FROM
+          (SELECT *
+             FROM note
+            WHERE user_id = #{userId}
+            ORDER BY note_date DESC) a)
+ WHERE rn BETWEEN 10 * (#{page} - 1) + 1 AND #{page} * 10
+</select>
+
+<select id="selecTotalCntNote" parameterType="kr.co.codemaker.user.course.note.vo.NoteVO" resultType="java.lang.Integer">
+SELECT COUNT(*)
+  FROM note
+ WHERE user_id = #{userId}
+</select>
+
+<select id="selectNote" parameterType="String" resultType="kr.co.codemaker.user.course.note.vo.NoteVO">
+SELECT
+    note_id,
+    note_title,
+    note_cont,
+    note_date,
+    user_id
+FROM
+    note
+WHERE
+	note_id = #{noteId}
+</select>
+<insert id="insertNote" parameterType="kr.co.codemaker.user.course.note.vo.NoteVO">
+INSERT INTO note (
+    note_id,
+    note_title,
+    note_cont,
+    note_date,
+    user_id
+) VALUES (
+    'NOTE'||LPAD(NOTE_SEQ.NEXTVAL,4,'0'),
+    #{noteTitle},
+    #{noteCont},
+    SYSDATE,
+    #{userId}
+)
+</insert>
+<update id="updateNote" parameterType="kr.co.codemaker.user.course.note.vo.NoteVO">
+UPDATE note
+    SET
+        note_title = #{noteTitle},
+   		note_cont = #{noteCont},
+   		note_date = SYSDATE
+WHERE
+    note_id = #{noteId}
+</update>
+<delete id="deleteNote" parameterType="kr.co.codemaker.user.course.note.vo.NoteVO">
+DELETE FROM note
+WHERE
+    note_id = #{noteId}
+</delete>
+</mapper>

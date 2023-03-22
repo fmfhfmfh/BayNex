@@ -1,0 +1,84 @@
+@charset "UTF-8";
+.pagination .page-item:first-child .page-link, .pagination .page-item:last-child .page-link {
+    height: 35px;
+}
+table{
+	table-layout: fixed;
+}
+#hd {
+	margin-left: 15px;
+}
+#tthe{
+	text-align: center;
+}
+#search {
+	width: 115px;
+	display: inline-block;
+	margin-right: 10px;
+	margin-left : 15px;
+	margin-bottom: 10px;
+}
+#right {
+	display : inline-block;
+}
+#regBtn {
+	height: 36px;
+}
+#subject{
+	width: 120px;
+    display: inline-block;
+}
+#lesson{
+	display: inline-block;
+    width: 400px;
+}
+#les{
+	display: inline-block;
+}
+.py-4{
+	float: right;
+}
+#examList{
+
+}
+.exam-box{
+	width: 92%;
+    margin: 30px auto;
+    height: auto;
+    min-height: 1080px;
+}
+.exam-box-item{
+	padding: 40px 50px 0px;
+}
+.exam-tb{
+    margin: 0 auto;
+    text-align: center;
+    border-top: 3px solid #808080ad;
+    border-bottom: 2px solid #808080ad;
+}
+.exam-tb thead{
+	font-size: 25px;
+}
+.exam-tb thead th{
+	padding: 15px 0; 	
+}
+.exam-tb tbody td{
+	border-top: 1px solid #80808042;
+    font-size: 19px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+.exam-tb tbody td span{
+	font-size: 19px;
+	font-weight: 600;
+}
+#examList tr:hover{
+	cursor: pointer;
+}
+.exam-box-item h3{
+	font-size: 40px;
+}
+#left{
+	width: 80%;
+    display: inline-block;
+}

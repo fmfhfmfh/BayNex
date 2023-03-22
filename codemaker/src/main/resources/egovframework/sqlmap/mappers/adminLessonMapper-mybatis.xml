@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.codemaker.admin.course.lesson.dao.AdminLessonMapper">
+<select id="selectAgreeCnt" resultType="kr.co.codemaker.admin.course.lesson.vo.LessonVO">
+select S.sub_id
+, S.sub_nm
+, nvl(R.cnt, 0) agreeCnt
+, nvl(V.cnt, 0) sagreeCnt
+, nvl(C.cnt, 0) dagreeCnt
+from Subject S
+, (select sub_id, count(*) cnt
+from lesson
+where les_state = '2'
+group by sub_id ) R,
+(select sub_id, count(*) cnt
+from lesson
+where les_state = '3'
+group by sub_id) V,
+(select sub_id, count(*) cnt
+from lesson
+where les_state = '4'
+group by sub_id) C
+where S.sub_out = 'N'
+and s.sub_id = R.sub_id(+)
+and s.sub_id = V.sub_id(+)
+and s.sub_id = C.sub_id(+)
+</select>
+
+<select id="selectAllLesson" parameterType="kr.co.codemaker.admin.course.lesson.vo.LessonVO" resultType="kr.co.codemaker.admin.course.lesson.vo.LessonVO">
+select *
+from lesson l, teacher t
+where l.sub_id = #{subId}
+and l.les_state = #{lesState}
+and l.tch_id = t.tch_id
+</select>
+
+<select id="selectLesson" parameterType="kr.co.codemaker.admin.course.lesson.vo.LessonVO" resultType="kr.co.codemaker.admin.course.lesson.vo.LessonVO">
+SELECT *
+FROM lesson l, teacher t
+WHERE les_id = #{lesId}
+  AND l.tch_id = t.tch_id
+</select>
+
+<select id="selectLessonIndex" parameterType="kr.co.codemaker.admin.course.lesson.vo.LessonIndexVO" resultType="kr.co.codemaker.admin.course.lesson.vo.LessonIndexVO">
+SELECT *
+  FROM lesson_index
+ WHERE les_id = #{lesId}
+</select>
+
+<update id="updateLesson" parameterType="kr.co.codemaker.admin.course.lesson.vo.LessonVO">
+UPDATE lesson
+    SET
+       les_state = #{lesState}
+       <if test="lesTerm != null and !lesTerm.equals('')">
+	       ,les_term = #{lesTerm},
+	       les_cash = #{lesCash},
+	       les_sdate = #{lesSdate},
+	       les_edate = #{lesEdate}
+       </if>
+WHERE
+       les_id = #{lesId}
+</update>
+
+<update id="updateExam" parameterType="kr.co.codemaker.admin.course.lesson.vo.ExamVO">
+UPDATE exam
+    SET
+       exam_state = #{examState}
+WHERE
+       les_id = #{lesId}
+</update>
+<select id="selectTeacher" resultType="java.lang.String" parameterType="java.lang.String">
+SELECT a.tch_id 
+  FROM teacher a, lesson b where a.tch_Id = b.tch_Id and b.les_Id= #{lesId}
+</select>
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.codemaker.teacher.resume.dao.ResumeMapper">
+	<!-- 이력서 제출 -->
+	<insert id="insertResume" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+		INSERT INTO resume
+				( 
+					res_id
+					, res_code
+					, res_nm
+					, res_tel
+					, res_mail
+					, res_profile
+					, res_motive
+					, res_edu
+					, res_license
+					, res_career
+					, res_state
+				) VALUES (
+					'RES'||LPAD(RES_SEQ.NEXTVAL, 4, '0')
+					, 'T'||LPAD(RES_SEQ.NEXTVAL, 4, '0')
+					, #{resNm}
+					, #{resTel}
+					, #{resMail}
+					, #{resProfile}
+					, #{resMotive}
+					, #{resEdu}
+					, #{resLicense}
+					, #{resCareer}
+					, #{resState}
+				)
+	</insert>
+	<!-- 이력서 임시저장 -->
+	<insert id="saveResume" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+		INSERT INTO resume
+				( 
+					res_id
+					, res_code
+					, res_nm
+					, res_tel
+					, res_mail
+					, res_profile
+					, res_motive
+					, res_edu
+					, res_license
+					, res_career
+					, res_state
+				) VALUES (
+					'RES'||LPAD(RES_SEQ.NEXTVAL, 4, '0')
+					, 'T'||LPAD(RES_SEQ.NEXTVAL, 4, '0')
+					, #{resNm}
+					, #{resTel}
+					, #{resMail}
+					, #{resProfile}
+					, #{resMotive}
+					, #{resEdu}
+					, #{resLicense}
+					, #{resCareer}
+					, #{resState}
+				)
+	</insert>
+	<!-- 채용정보 - 선생님 이력서 조회 -->
+	<select id="selectResume" resultType="kr.co.codemaker.teacher.signup.vo.ResumeVO" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+		SELECT * FROM resume
+		WHERE res_nm = #{resNm} AND res_tel = #{resTel}
+	</select>
+	
+	<!-- 임시저장 이력서 제출 -->
+	<update id="updateResume" parameterType="kr.co.codemaker.teacher.signup.vo.ResumeVO">
+		UPDATE resume SET res_mail=#{resMail}, res_profile=#{resProfile}, res_motive=#{resMotive}, res_edu=#{resEdu},
+	        res_license=#{resLicense},res_career=#{resCareer},res_state=#{resState}
+        WHERE res_nm=#{resNm} AND res_tel=#{resTel}
+	</update>
+</mapper>

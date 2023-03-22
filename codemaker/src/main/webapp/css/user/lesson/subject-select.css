@@ -1,0 +1,132 @@
+@charset "UTF-8";
+.lesson-main-box{
+    min-height: 867px;
+    height: auto;
+}
+.lesson-list-box{
+    display: flex;
+    justify-content: flex-start;
+    align-content : space-around;
+    padding: 51px 310px 0;
+    min-height: 867px;
+    height: auto;
+    flex-wrap: wrap;
+}
+.sublist-box{
+    width: 351px;
+    height: 350px;
+    margin-right: 76px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 48px;
+}
+.subject-header{
+    width: 100%;
+    height: 56px;
+    background: gray;
+    display: flex;
+    justify-content: flex-end;
+}
+.subject-subnm-box{
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    margin-right: 25px;
+    margin-top: 14px;
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.subject-subnm-box span{
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+}
+.img-box{
+	width: 100%;
+	height: 45px;
+}
+.img-cont{
+/*     position: absolute; */
+/*     left: 329px; */
+/*     z-index: 30; */
+/*     top: 180px; */
+    position: relative;
+    left: 16px;
+    top: -40px;
+    transform-origin: left;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    padding: 13px;
+    overflow: hidden;
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,0.11);
+    background-color: #fff;
+}
+.img-cont img{
+	height: 56px;
+}
+.sub-coment-box{
+    width: 88%;
+    height: 221px;
+}
+.sub-coment-item{
+	height: 80%;
+	padding-top: 15px;
+	overflow: auto;
+}
+.divider{
+    height: 31%;
+    border-top: 2px solid #8080808c;
+}
+.info-lesnm a{
+    font-size: 22px;
+    font-weight: 600;
+    color: #1b1b18f7;
+}
+.shDB{
+	background: rgb(0,94,135);
+}
+.ssDB{
+	background: rgb(3 47 66);
+}
+.shSpring{
+	background: #008000b8;
+}
+.ssSpring{
+	background: #064806;
+}
+.shJava{
+	background: #b52121b5;
+}
+.ssJava{
+	background: #920d0d;
+}
+.shPython{
+	background: #800080ab;
+}
+.ssPython{
+	background: #750075;
+}
+.shJSP{
+	background: #463c3cd1;
+}
+.ssJSP{
+	background: #463c3cd1;
+}
+.shCss{
+	background: #caa41cd1;
+}
+.ssCss{
+	background: #504210;
+}
+.shAndroid{
+	background: #aac148;
+}
+.ssAndroid{
+	background: #3b4414;
+}
