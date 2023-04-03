@@ -30,7 +30,7 @@
 									<c:url value="/user/selectLessonPage" var="user">
 										<c:param name="lesId" value="${lesList.lesId}"/>
 									</c:url>
-										<span class="info-lesnm"><a href="${user}">${lesList.lesNm}</a></span>
+										<span class="info-lesnm"><a href="${user}" style="font-size:20px;">${lesList.lesNm}</a></span>
 								</div>
 							</c:if>
 						</c:forEach>
